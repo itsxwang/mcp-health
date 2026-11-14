@@ -24,17 +24,23 @@ NPM_URL = "https://registry.npmjs.org/{name}"
 UA = "mcp-health-index/0.1 (+https://github.com/your-name/mcp-health-index)"
 
 
-def http_get_json(url: str, timeout: int = 30, retries: int = 2) -> dict:
-    last_err = None
+def http_get_json(url: str, timeout: int = 30, retries: int = 2, ok_missing: bool = False):
+    """GET+parse JSON. 404/400 return None when ok_missing (lookup misses),
+    otherwise retry transient errors (5xx/429/timeout) and raise on final failure."""
+    import urllib.error
+    last_err: Exception | None = None
     for attempt in range(retries + 1):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=timeout) as r:
-                body = r.read().decode("utf-8", errors="replace")
-                return json.loads(body)
+                return json.loads(r.read().decode("utf-8", errors="replace"))
+        except urllib.error.HTTPError as e:
+            if e.code in (400, 404):
+                return None if ok_missing else None  # permanent: don't retry
+            last_err = e  # 5xx / 429: transient
         except Exception as e:  # noqa: BLE001
             last_err = e
-            time.sleep(1.5 * (attempt + 1))
+        time.sleep(1.5 * (attempt + 1))
     raise RuntimeError(f"GET {url} failed: {type(last_err).__name__}: {last_err}")
 
 
@@ -84,15 +90,43 @@ def normalize_repo(url: str | None) -> str | None:
 
 def fetch_repo_info(full_name: str) -> dict | None:
     try:
-        return http_get_json(f"https://api.github.com/repos/{full_name}", timeout=15)
+        return http_get_json(f"https://api.github.com/repos/{full_name}", timeout=15, retries=0, ok_missing=True)
     except Exception:
         return None
 
 
-def npm_lookup(name: str) -> dict | None:
-    """Live npm registry lookup; returns minimal doc or None (404 = not found)."""
+def npm_search_by_repo(full_name: str) -> dict | None:
+    """Find the npm package whose repository link points at this GitHub repo."""
+    short = full_name.split("/")[-1]
+    url = (f"https://registry.npmjs.org/-/v1/search?text={urllib.parse.quote(short)}"
+           f"&size=12")
     try:
-        data = http_get_json(NPM_URL.format(name=urllib.parse.quote(name, safe="")) , timeout=20)
+        data = http_get_json(url, timeout=20, retries=0)
+    except Exception:
+        return None
+    target = full_name.lower()
+    for obj in (data or {}).get("objects") or []:
+        p = obj.get("package") or {}
+        links = p.get("links") or {}
+        repo = str(links.get("repository") or "")
+        r = repo.lower().replace("http://", "https://").rstrip("/").removesuffix(".git")
+        if f"github.com/{target}" in r:
+            # keep only MCP-flavored packages: n8n, playwright etc. are not
+            # themselves MCP servers even though their repos carry MCP support
+            name = p.get("name") or ""
+            blob = f"{name} {p.get('description') or ''}".lower()
+            if ("mcp" in blob or "modelcontextprotocol" in blob
+                    or "model context protocol" in blob):
+                return p
+    return None
+
+
+def npm_lookup(name: str) -> dict | None:
+    """Live npm registry lookup of the LATEST manifest (has bin/main/exports);
+    404 → None immediately (no retry)."""
+    try:
+        data = http_get_json(NPM_URL.format(name=urllib.parse.quote(name, safe="")) + "/latest",
+                             timeout=20, retries=0, ok_missing=True)
         if isinstance(data, dict) and data.get("name") and (data.get("bin") or data.get("main") or data.get("exports")):
             return data
         return None
@@ -109,7 +143,7 @@ def build_candidates(db_path: Path, gh_repo_budget: int = 45) -> dict:
 
     # 1) Official registry (preferred)
     try:
-        records = fetch_registry()
+        records = fetch_registry(max_pages=30)
         stats["registry_records"] = len(records)
     except Exception as e:
         records = []
@@ -117,7 +151,7 @@ def build_candidates(db_path: Path, gh_repo_budget: int = 45) -> dict:
         stats["errors"].append(f"registry fetch failed: {e}")
 
     repo_to_slug: dict[str, str] = {}
-    for rec in records:
+    for i, rec in enumerate(records):
         try:
             sp = spec.spec_from_registry_record(rec)
         except Exception as e:
@@ -127,12 +161,14 @@ def build_candidates(db_path: Path, gh_repo_budget: int = 45) -> dict:
             continue
         stats["stdio_specs"] += 1
         db.upsert_candidate(con, sp)
-        repo = spec.normalize_repo(sp.get("repo_url"))
+        repo = normalize_repo(sp.get("repo_url"))
         if repo:
             repo_to_slug[repo] = sp["slug"]
+        if (i + 1) % 200 == 0:
+            print(f"  registry: {i+1}/{len(records)} records → {stats['stdio_specs']} stdio specs")
 
     # 2) GitHub stars search: popularity proxy + free license/freshness metadata
-    gh_items = fetch_github_search(pages=2)
+    gh_items = fetch_github_search(pages=4)
     stats["gh_search_repos"] = len(gh_items)
     star_map: dict[str, dict] = {}
     for it in gh_items:
@@ -152,41 +188,45 @@ def build_candidates(db_path: Path, gh_repo_budget: int = 45) -> dict:
             db.enrich(con, slug, info["stars"], info["license"], info["pushed_at"])
             stats["enriched_from_search"] += 1
             matched_repos.add(repo.lower())
+    print(f"  enriched from gh-search: {stats['enriched_from_search']}/{len(repo_to_slug)} with repos")
 
     # 3) GitHub-search fallback (also when registry died): match top repos to real npm pkgs
+    #    Only needed when the registry is missing/broken — lookup misses are now cheap,
+    #    but 160 npm calls are still pointless when we have 600 registry candidates.
     fallback_done = 0
-    for it in gh_items[:80]:
-        full = it.get("full_name") or ""
-        if not full or full.lower() in matched_repos:
-            continue
-        info = star_map.get(full.lower(), {})
-        short = full.split("/")[-1]
-        npm_doc = None
-        ident = None
-        for cand_name in (f"@{full.replace('/', '/')}", short):
-            if fallback_done >= 120:
-                break
-            npm_doc = npm_lookup(cand_name)
+    if not stats["registry_ok"] or stats["enriched_from_search"] < 50:
+        print("registry thin/unreachable — running GitHub-search + npm fallback")
+        for it in gh_items[:100]:
+            full = it.get("full_name") or ""
+            if not full or full.lower() in matched_repos:
+                continue
+            info = star_map.get(full.lower(), {})
+            npm_doc = None
+            ident = None
+            hit = npm_search_by_repo(full)          # match npm pkg by repo URL
             fallback_done += 1
-            if npm_doc:
-                ident = cand_name
-                break
-        if npm_doc and ident:
-            npm_doc["name"] = ident
-            sp = spec.spec_from_npm_fallback(full, it.get("html_url"), npm_doc, info.get("stars"))
-            if sp:
-                existing = con.execute("SELECT 1 FROM servers WHERE slug=?", (sp["slug"],)).fetchone()
-                if not existing:
-                    db.upsert_candidate(con, sp, {"stars": info.get("stars"),
-                                                  "license": info.get("license"),
-                                                  "pushed_at": info.get("pushed_at")})
-                    stats["npm_fallback_specs"] += 1
+            if hit and hit.get("name"):
+                npm_doc = npm_lookup(hit["name"])   # verify bin/entry exists
+                fallback_done += 1
+                if npm_doc:
+                    ident = hit["name"]
+            if npm_doc and ident:
+                npm_doc["name"] = ident
+                sp = spec.spec_from_npm_fallback(full, it.get("html_url"), npm_doc, info.get("stars"))
+                if sp:
+                    existing = con.execute("SELECT 1 FROM servers WHERE slug=?", (sp["slug"],)).fetchone()
+                    if not existing:
+                        db.upsert_candidate(con, sp, {"stars": info.get("stars"),
+                                                      "license": info.get("license"),
+                                                      "pushed_at": info.get("pushed_at")})
+                        stats["npm_fallback_specs"] += 1
     stats["npm_fallback_lookups"] = fallback_done
 
     # 4) Per-repo GitHub enrichment for registry candidates missing stars (budget-bound)
     remaining = gh_repo_budget
     for row in con.execute(
-        "SELECT slug, repo_url, stars FROM servers WHERE repo_url IS NOT NULL AND stars IS NULL"
+        "SELECT slug, repo_url FROM servers WHERE repo_url IS NOT NULL AND stars IS NULL "
+        "ORDER BY name LIMIT ?", (gh_repo_budget + 20,)
     ).fetchall():
         if remaining <= 0:
             break
