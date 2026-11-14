@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import signal
 import sys
@@ -93,6 +94,13 @@ def main() -> int:
             result["errors"] = probe["errors"]
             result["stderr_tail"] = probe["stderr_tail"]
             result["status"], result["stage"] = _status_from_phases(inst, phases)
+            stderr = probe.get("stderr_tail") or ""
+            if result["status"] == "fail" and result["stage"] == "handshake" and re.search(
+                r"USAGE|^usage|command-line client|Commands:|Options:", stderr, re.MULTILINE | re.IGNORECASE
+            ):
+                result["errors"] = (result["errors"] or []) + [
+                    "CLI-style package: prints usage/help and exits when invoked bare "
+                    "(no MCP server subcommand declared in registry metadata)"]
         else:
             result["stage"] = "install"
             result["errors"] = [inst.get("error") or "install failed"]

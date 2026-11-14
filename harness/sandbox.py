@@ -35,7 +35,8 @@ RLIMITS: dict[str, int] = {
     # stays an effective fork-bomb cap but must sit above the host baseline.
     "RLIMIT_NPROC": 2048,
     "RLIMIT_FSIZE": 64 * 1024 * 1024,    # max single-file write: 64 MiB
-    "RLIMIT_NOFILE": 256,                # open file descriptors
+    "RLIMIT_NOFILE": 1024,               # open fds (256 was too tight: servers
+                                         # reading hundreds of files concurrently hit EMFILE)
     "RLIMIT_CORE": 0,                    # no core dumps
 }
 

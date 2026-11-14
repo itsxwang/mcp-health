@@ -26,6 +26,8 @@ SPECS_DIR = ROOT / "data" / "specs"
 
 def run_one(row, timeout: float, net_flag: str) -> dict:
     slug = row["slug"]
+    SPECS_DIR.mkdir(parents=True, exist_ok=True)
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     spec_path = SPECS_DIR / f"{slug}.json"
     out_path = RESULTS_DIR / f"{slug}.json"
     spec_path.write_text(row["spec_json"], encoding="utf-8")
@@ -91,10 +93,16 @@ def main() -> int:
     ap.add_argument("--timeout", type=float, default=300.0, help="per-server wall seconds")
     ap.add_argument("--force", action="store_true", help="retest already-tested servers")
     ap.add_argument("--net-isolate", choices=["auto", "on", "off"], default="auto")
+    ap.add_argument("--only", default=None, help="substring filter on slug (retest helper)")
     args = ap.parse_args()
 
     con = db.connect(Path(args.db))
-    rows = db.candidates(con, only_untested=not args.force, limit=args.limit or None)
+    rows = db.candidates(con, only_untested=not args.force,
+                         limit=None if args.only else (args.limit or None))
+    if args.only:
+        rows = [r for r in rows if args.only in r["slug"]]
+        if args.limit:
+            rows = rows[:args.limit]
     net_isolate = apply_net_flag(args.net_isolate)
     avail, method, _ = sandbox.detect_network_isolation()
     net_state = method if avail else "OFF (unavailable: server processes get network egress)"
@@ -109,12 +117,9 @@ def main() -> int:
     started_at = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
     def _task(row):
-        res = run_one(row, args.timeout, args.net_isolate)
-        try:
-            db.record_result(con, res)
-        except Exception as e:
-            print(f"  !! db error for {res.get('slug')}: {e}")
-        return res
+        # DB writes happen on the main thread (sqlite3 objects are
+        # thread-bound); workers only run the isolated probe.
+        return run_one(row, args.timeout, args.net_isolate)
 
     done = 0
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
@@ -122,13 +127,17 @@ def main() -> int:
         for fut in as_completed(futures):
             res = fut.result()
             done += 1
+            try:
+                db.record_result(con, res)
+            except Exception as e:
+                print(f"  !! db error for {res.get('slug')}: {e}")
             counts[res.get("status", "fail")] = counts.get(res.get("status", "fail"), 0) + 1
             phases = res.get("phases") or {}
             hs = (phases.get("handshake") or {}).get("seconds")
             tc = (phases.get("list_tools") or {}).get("count")
             print(f"[{done}/{len(rows)}] {res['slug'][:48]:48s} "
-                  f"{res.get('status','?'):8s} stage={res.get('stage','?'):12s} "
-                  f"tools={tc if tc is not None else '-':>4s} hs={hs if hs is not None else '-'}s "
+                  f"{str(res.get('status','?')):8s} stage={str(res.get('stage','?')):12s} "
+                  f"tools={str(tc) if tc is not None else '-':>4} hs={str(hs) if hs is not None else '-'}s "
                   f"wall={res.get('_parent_seconds','?')}s")
 
     db.meta_set(con, "last_finished_run_at", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
