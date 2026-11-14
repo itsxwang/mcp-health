@@ -1,0 +1,6 @@
+# Only runtime dependency: the official MCP SDK (client side).
+# Everything else is Python stdlib (urllib, sqlite3, subprocess, resource…).
+mcp==2.3.0
+
+# Tool (not a Python dep): uv is used to create ephemeral venvs for PyPI candidates.
+# Install with: curl -LsSf https://astral.sh/uv/install.sh | sh
