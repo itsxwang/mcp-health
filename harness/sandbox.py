@@ -30,7 +30,10 @@ from pathlib import Path
 RLIMITS: dict[str, int] = {
     "RLIMIT_CPU": 60,                    # CPU-seconds per process
     "RLIMIT_AS": 2_147_483_648,          # 2 GiB virtual address space
-    "RLIMIT_NPROC": 64,                  # max child processes
+    # NOTE: RLIMIT_NPROC counts ALL tasks (processes AND threads) of the real
+    # uid, not just this tree — a desktop session can already hold ~900+. It
+    # stays an effective fork-bomb cap but must sit above the host baseline.
+    "RLIMIT_NPROC": 2048,
     "RLIMIT_FSIZE": 64 * 1024 * 1024,    # max single-file write: 64 MiB
     "RLIMIT_NOFILE": 256,                # open file descriptors
     "RLIMIT_CORE": 0,                    # no core dumps
@@ -53,20 +56,25 @@ def detect_network_isolation() -> tuple[bool, str, list[str]]:
         pass
 
     available, method, prefix = False, "not available on this host", []
-    if shutil.which("bwrap"):
+
+    def _try_bwrap() -> bool:
+        # Test with the SAME rlimits a real run applies, so the detection
+        # reflects production behavior exactly.
+        probe_cmd = [*limitwrap_command(), *["bwrap", "--unshare-net", "--bind", "/", "/",
+                                             "--dev", "/dev", "--proc", "/proc"], "--", "true"]
         try:
-            r = subprocess.run(
-                ["bwrap", "--unshare-net", "--bind", "/", "/", "--dev", "/dev", "--proc", "/proc", "true"],
-                capture_output=True, timeout=15,
-            )
-            if r.returncode == 0:
-                available, method = True, "bubblewrap --unshare-net"
-                prefix = ["bwrap", "--unshare-net", "--bind", "/", "/", "--dev", "/dev", "--proc", "/proc"]
+            r = subprocess.run(probe_cmd, capture_output=True, timeout=15)
+            return r.returncode == 0
         except Exception:
-            pass
+            return False
+
+    if shutil.which("bwrap") and _try_bwrap():
+        available, method = True, "bubblewrap --unshare-net"
+        prefix = ["bwrap", "--unshare-net", "--bind", "/", "/", "--dev", "/dev", "--proc", "/proc"]
     if not available and shutil.which("unshare"):
+        probe_cmd = [*limitwrap_command(), "unshare", "-n", "--", "true"]
         try:
-            r = subprocess.run(["unshare", "-n", "true"], capture_output=True, timeout=15)
+            r = subprocess.run(probe_cmd, capture_output=True, timeout=15)
             if r.returncode == 0:
                 available, method = True, "unshare -n (network namespace)"
                 prefix = ["unshare", "-n", "--"]

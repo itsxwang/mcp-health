@@ -13,8 +13,8 @@ like npx conflate the two.
 """
 from __future__ import annotations
 
-import configparser
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -115,9 +115,9 @@ def _pypi_entrypoint(venv: Path, identifier: str) -> tuple[list[str] | None, str
 def install_and_build_argv(spec: dict, tmpdir: Path, timeout: float = 180.0) -> dict:
     """Install the server into tmpdir; return {ok, argv, method, seconds, error, run_env}."""
     source = spec.get("source")
-    env = safe_env(tmpdir, {"npm_config_cache": str(tmpdir / "npm-cache"),
+    env = safe_env(tmpdir, {"npm_config_cache": os.environ.get("MCPHI_NPM_CACHE", str(tmpdir / "npm-cache")),
                             "npm_config_update_notifier": "false",
-                            "UV_CACHE_DIR": str(tmpdir / "uv-cache"),
+                            "UV_CACHE_DIR": os.environ.get("MCPHI_UV_CACHE", str(tmpdir / "uv-cache")),
                             "UV_PYTHON_INSTALL_DIR": str(tmpdir / "uv-python")})
     if source == "npm":
         return _install_npm(spec, tmpdir, env, timeout)

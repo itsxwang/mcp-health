@@ -33,8 +33,11 @@ def run_one(row, timeout: float, net_flag: str) -> dict:
         out_path.unlink()
     cmd = [sys.executable, "-m", "harness.oneshot", str(spec_path), str(out_path)]
     env = {"PATH": os.environ.get("PATH", ""), "HOME": os.environ.get("HOME", ""),
-           "MCPHI_TMPBASE": "/tmp/opencode/mcphi-runs"}
-    Path(env["MCPHI_TMPBASE"]).mkdir(parents=True, exist_ok=True)
+           "MCPHI_TMPBASE": "/tmp/opencode/mcphi-runs",
+           "MCPHI_NPM_CACHE": "/tmp/opencode/mcphi-npm-cache",
+           "MCPHI_UV_CACHE": "/tmp/opencode/mcphi-uv-cache"}
+    for d in ("MCPHI_TMPBASE", "MCPHI_NPM_CACHE", "MCPHI_UV_CACHE"):
+        Path(env[d]).mkdir(parents=True, exist_ok=True)
     started = time.perf_counter()
     p = subprocess.Popen(cmd, cwd=str(ROOT), env=env, start_new_session=True,
                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

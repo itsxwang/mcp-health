@@ -47,6 +47,15 @@ RISKY_RX = re.compile(
 )
 
 
+def _fmt_exc(e: BaseException) -> str:
+    """Readable message for anyio's nested ExceptionGroups."""
+    if isinstance(e, BaseExceptionGroup):
+        inner = _fmt_exc(e.exceptions[0]) if e.exceptions else ""
+        return f"{type(e).__name__}: {inner}"[:400]
+    msg = str(e).strip()
+    return f"{type(e).__name__}: {msg}"[:400]
+
+
 def choose_tool(tools: list[dict]) -> dict | None:
     """First tool that looks read-only by name and not risky."""
     for t in tools:
@@ -178,7 +187,7 @@ async def _probe(argv, env, cwd, timeouts, net_isolate, tmpdir: Path) -> dict:
                         "error": None, "count": res_count,
                     }
                 except Exception as e:
-                    res_ok, res_err = False, f"{type(e).__name__}: {e}"[:300]
+                    res_ok, res_err = False, _fmt_exc(e)
                     phases["list_resources"] = {
                         "ok": False, "seconds": None, "error": res_err, "count": 0,
                     }
@@ -215,11 +224,11 @@ async def _probe(argv, env, cwd, timeouts, net_isolate, tmpdir: Path) -> dict:
                         phases["call"] = {
                             "attempted": True, "ok": False, "tool": tool["name"], "args": args,
                             "seconds": round(time.perf_counter() - t0, 3),
-                            "error": f"{type(e).__name__}: {e}"[:400], "is_error": False,
+                            "error": _fmt_exc(e), "is_error": False,
                             "preview": None, "note": None,
                         }
     except BaseException as e:  # noqa: BLE001 — we record every failure mode honestly
-        errors.append(f"{phase}: {type(e).__name__}: {e}"[:400])
+        errors.append(f"{phase}: {_fmt_exc(e)}")
         phases.setdefault(phase, {"ok": False, "error": errors[-1]})
         if phase not in ("handshake", "list_tools", "call", "list_resources"):
             phases["spawn"] = {"ok": False, "error": errors[-1]}
@@ -243,6 +252,6 @@ def run_probe(argv, env, cwd, timeouts, net_isolate, tmpdir: Path) -> dict:
         return asyncio.run(_probe(argv, env, cwd, timeouts, net_isolate, tmpdir))
     except BaseException as e:  # hard crash inside asyncio loop itself
         return {
-            "phases": {}, "errors": [f"fatal: {type(e).__name__}: {e}"[:400]],
+            "phases": {}, "errors": [f"fatal: {_fmt_exc(e)}"],
             "stderr_tail": "", "net_method": None,
         }
