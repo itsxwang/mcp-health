@@ -316,7 +316,9 @@ def detail_page(r, out: Path, base: str) -> None:
                         f"{(' — ' + esc(inst.get('error'))) if inst.get('error') else ''}</td></tr>")
             continue
         ph = phases.get(name)
-        if not ph and name != "call":
+        if ph is None and name != "call":
+            continue
+        if ph is None:
             continue
         ok = ph.get("ok") if name != "call" else (ph.get("ok") if ph.get("attempted") else None)
         icon = "✅" if ok else ("⏭" if (name == "call" and ph and not ph.get("attempted")) else "❌")
