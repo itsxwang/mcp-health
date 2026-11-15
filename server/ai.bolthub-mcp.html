@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.bolthub/mcp.">
+<title>MCP Health Index — bolthub</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>bolthub</h1>
+<p class="tagline"><img src="../badges/ai.bolthub-mcp.svg" alt="badge"> <span class="chip ok">PASS</span>
+&nbsp; stage: <code>call</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.bolthub/mcp</td></tr>
+<tr><td>Source</td><td>npm — <code>@bolthub/mcp@0.7.2</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/signaltech-org/bolthub-sdk">https://github.com/signaltech-org/bolthub-sdk</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>The bolthub API marketplace, L402 gateways, and your other MCP servers, on one Lightning budget.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>6.53s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>0.58s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.01s</td><td></td></tr><tr><td><code>list_resources</code></td><td>❌</td><td>–</td><td>MCPError: Method not found</td></tr><tr><td><code>call</code></td><td>✅</td><td>0.66s</td><td>tool=search_apis args={}</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-z72fp5bm/node_modules/@bolthub/mcp/dist/index.js</code>
+</p>
+<h2>Tools (22)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>search_apis</code></td><td>Search the bolthub API marketplace. Returns a list of available APIs with names, descriptions, tags, endpoint counts, and pricing. Use this to discove</td><td><code></code></td></tr><tr><td><code>get_api_details</code></td><td>Get full details for a specific API including all endpoints, pricing, example requests/responses, and usage instructions. Use the slug from search_api</td><td><code></code></td></tr><tr><td><code>preview_cost</code></td><td>Preview the cost of calling an API endpoint without making the actual request or paying. Use this to check pricing before committing to a call.</td><td><code></code></td></tr><tr><td><code>call_api</code></td><td>Call an API endpoint on the bolthub marketplace. Handles L402 Lightning payments automatically. Use get_api_details or preview_cost first to check pri</td><td><code></code></td></tr><tr><td><code>buy_credit</code></td><td>Buy prepaid CREDIT for a bolthub provider: pay ONCE for a sats budget spendable across ALL of that provider&#x27;s endpoints, then call_api to any of them </td><td><code></code></td></tr><tr><td><code>mint_scoped_token</code></td><td>Mint a scoped, capped child credential from a multi-use credential you already hold for an endpoint, to hand to a sub-agent. Attenuates OFFLINE (no pa</td><td><code></code></td></tr><tr><td><code>revoke_token</code></td><td>Revoke the grant behind a prepaid bundle this session bought, killing the whole delegation tree minted from it (every scoped child made with mint_scop</td><td><code></code></td></tr><tr><td><code>deploy_node</code></td><td>Deploy a Lightning node (LND + Neutrino) on the user&#x27;s own VPS — fully non-custodial. GUIDED FLOW, call it repeatedly as the conversation progresses: </td><td><code></code></td></tr><tr><td><code>node_status</code></td><td>Check the status of a deployed Lightning node. Returns current state, IP address, sync progress, and setup instructions when applicable. Pass wait_for</td><td><code></code></td></tr><tr><td><code>list_api</code></td><td>Turn an API spec into a DRAFT bolthub listing: parses OpenAPI/Swagger or Postman (JSON or YAML), creates the endpoints as unlisted drafts (never visib</td><td><code></code></td></tr><tr><td><code>publish_listing</code></td><td>Take a workspace&#x27;s draft endpoints live in the bolthub directory. Without confirm:true it is a DRY RUN that shows exactly what would go live (endpoint</td><td><code></code></td></tr><tr><td><code>analyze_listing</code></td><td>Audit a bolthub listing you own against the seller-guide rubric and get a prioritized punch list (HIGH/MED/LOW findings with evidence and a fix pointe</td><td><code></code></td></tr><tr><td><code>get_earnings</code></td><td>Revenue report for a bolthub workspace you own: all-time and windowed earnings in sats, recent paid days, and top-earning endpoints. Read-only. Requir</td><td><code></code></td></tr><tr><td><code>usage_summary</code></td><td>Operational usage for a bolthub workspace you own: billing status and projected platform fee for the current cycle, paid traffic by endpoint, and SDK-</td><td><code></code></td></tr><tr><td><code>connect_account</code></td><td>One-click connect this MCP server to the user&#x27;s bolthub account. Starts a browser pairing: returns an approval link and a short confirmation code — sh</td><td><code></code></td></tr><tr><td><code>connect_status</code></td><td>Finish or check the account pairing started by connect_account. Call it after the user says they approved in the browser. On success the account token</td><td><code></code></td></tr><tr><td><code>create_workspace</code></td><td>Create a new bolthub workspace (tenant) for selling APIs. Secret-free and reversible: an empty workspace costs nothing and the 30-day trial only start</td><td><code></code></td></tr><tr><td><code>connect_wallet</code></td><td>Check or set up the payout wallet for a workspace. A deployed bolthub node can be bound directly (pass node_id — the credential copy is server-side, n</td><td><code></code></td></tr><tr><td><code>get_onboarding_state</code></td><td>One-look onboarding checklist for a workspace: wallet connected, endpoints drafted/published, origin-protection verdict (live probe), listing live, tr</td><td><code></code></td></tr><tr><td><code>open_stream</code></td><td>Open a live streaming (SSE) endpoint and hold the connection in the background. One Lightning payment buys the connection; read_stream then returns ev</td><td><code></code></td></tr><tr><td><code>read_stream</code></td><td>Read new events from a stream opened with open_stream. Free (the connection is already paid). Returns events since your previous read; pass wait_secon</td><td><code></code></td></tr><tr><td><code>close_stream</code></td><td>Close a stream opened with open_stream and get a final summary (events, duration, cost). Closing does not refund the connection payment. Streams also </td><td><code></code></td></tr></tbody></table>
+<h2>Call result preview</h2><pre class="call">Error: fetch failed</pre>
+<h2>Server stderr (tail)</h2><pre class="call">[bolthub-mcp] no wallet configured — free tools only; paid calls will return their challenge
+[bolthub-mcp] Set one of the following to configure a wallet:
+  LND_REST_HOST + LND_MACAROON         (recommended, fastest &lt;200ms)
+  NWC_URI                              (easiest setup, slower 1-3s)
+  LNBITS_URL + LNBITS_ADMIN_KEY        (alternative, &lt;300ms)
+  PHOENIXD_URL + PHOENIXD_PASSWORD     (alternative, if you already run it)
+[bolthub-mcp] no budget set (unlimited) — consider --budget or budget.sat in the config
+[bolthub-mcp] marketplace &quot;marketplace&quot;: 22 tool(s)
+[bolthub-mcp] serving 22 tool(s) from 1 source(s) on stdio
+</pre>
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.bolthub-mcp.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.bolthub-mcp.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

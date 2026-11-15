@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.autonomad/travel.">
+<title>MCP Health Index — ai.autonomad/travel</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>ai.autonomad/travel</h1>
+<p class="tagline"><img src="../badges/ai.autonomad-travel.svg" alt="badge"> <span class="chip ok">PASS</span>
+&nbsp; stage: <code>call</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.autonomad/travel</td></tr>
+<tr><td>Source</td><td>npm — <code>autonomad-travel@1.6.6</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/autonomad-ai/autonomad">https://github.com/autonomad-ai/autonomad</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>Flights and hotels booked in one checkout; tours, events and dining to plan; group trips.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>4.02s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>0.69s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.01s</td><td></td></tr><tr><td><code>list_resources</code></td><td>✅</td><td>0.01s</td><td></td></tr><tr><td><code>call</code></td><td>✅</td><td>2.17s</td><td>tool=search_hotels args={}</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-p2jr_was/node_modules/autonomad-travel/dist/server.js</code>
+</p>
+<h2>Tools (12)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>search_hotels</code></td><td>Searches hotels and other places to stay by city or country and check-in/check-out dates, with optional filters for brand, room type, maximum nightly </td><td><code></code></td></tr><tr><td><code>search_flights</code></td><td>Searches flights between two airports (IATA codes such as JFK or LHR) on a departure date, with an optional return date, cabin class, travelers, maxim</td><td><code></code></td></tr><tr><td><code>search_dining</code></td><td>Searches restaurants in a city for a date, with optional time, party size, cuisine, price range and neighborhood. For planning only: it returns restau</td><td><code></code></td></tr><tr><td><code>search_activities</code></td><td>Searches tours, experiences and attractions from our tour and activity partners in a city from a start date, with an optional end date and category (f</td><td><code></code></td></tr><tr><td><code>search_events</code></td><td>Searches concerts, sports, theater, comedy and other live events in a city from a start date, from our ticketing partners, with an optional end date, </td><td><code></code></td></tr><tr><td><code>create_booking_intent</code></td><td>Creates a link only — nothing is charged, reserved or booked until the person pays on autonomad.ai. The short-lived link opens a page where the travel</td><td><code></code></td></tr><tr><td><code>get_capabilities</code></td><td>Returns this server&#x27;s version, its mode (a person&#x27;s connection or an autonomous agent&#x27;s), the API base URL and the tools this connection offers. Reads</td><td><code></code></td></tr><tr><td><code>get_updates</code></td><td>Returns what changed on the signed-in person&#x27;s Autonomad trips, bookings and group trips since the last call, and what Autonomad has said to them. Use</td><td><code></code></td></tr><tr><td><code>message_autonomad</code></td><td>Sends the signed-in person&#x27;s question or problem to Autonomad and returns the answer in the same call. `reply` is the answer from Autonomad&#x27;s automate</td><td><code></code></td></tr><tr><td><code>preview_booking_change</code></td><td>Shows the signed-in person what a booking change would do, and changes nothing. For type cancel it lists which parts of the booking can be canceled an</td><td><code></code></td></tr><tr><td><code>cancel_booking</code></td><td>Cancels the signed-in person&#x27;s booking, or only the parts listed in component_ids. Call it only after preview_booking_change has shown the person the </td><td><code></code></td></tr><tr><td><code>request_booking_change</code></td><td>Passes the signed-in person&#x27;s rebook or change request for a booking to that trip&#x27;s concierge. Call it only after preview_booking_change has shown the</td><td><code></code></td></tr></tbody></table>
+<h2>Call result preview</h2><pre class="call">Error: fetch failed</pre>
+<h2>Server stderr (tail)</h2><pre class="call">edHandler (file:///tmp/opencode/mcphi-runs/mcphi-run-p2jr_was/node_modules/@modelcontextprotocol/sdk/dist/esm/server/index.js:114:32) {
+  [cause]: RangeError: WebAssembly.Instance(): Out of memory: Cannot allocate Wasm memory for new instance
+      at lazyllhttp (node:internal/deps/undici/undici:6962:14)
+      at connectH1 (node:internal/deps/undici/undici:7485:26)
+      at node:internal/deps/undici/undici:9119:93
+      at TLSSocket.&lt;anonymous&gt; (node:internal/deps/undici/undici:3207:13)
+      at Object.onceWrapper (node:events:633:28)
+      at TLSSocket.emit (node:events:519:28)
+      at TLSSocket.onConnectSecure (node:_tls_wrap:1734:8)
+      at TLSSocket.emit (node:events:519:28)
+      at TLSSocket._finishInit (node:_tls_wrap:1095:8)
+      at ssl.onhandshakedone (node:_tls_wrap:881:12)
+}
+</pre>
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.autonomad-travel.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.autonomad-travel.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

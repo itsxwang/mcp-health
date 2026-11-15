@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.thetahealth/mirobody.">
+<title>MCP Health Index — Mirobody</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>Mirobody</h1>
+<p class="tagline"><img src="../badges/ai.thetahealth-mirobody.svg" alt="badge"> <span class="chip bad">FAIL</span>
+&nbsp; stage: <code>handshake</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.thetahealth/mirobody</td></tr>
+<tr><td>Source</td><td>pypi — <code>mirobody@1.6.1</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/thetahealth/mirobody">https://github.com/thetahealth/mirobody</a> ★ 1,510</td></tr>
+<tr><td>License</td><td>Apache-2.0</td></tr>
+<tr><td>Last push</td><td>2026-11-13</td></tr>
+<tr><td>Description</td><td>Lab results to LOINC codes and UCUM units, symptoms and diagnoses to ICPC-3. Offline, no API key.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>0.16s</td><td>pypi:python -m</td></tr><tr><td><code>handshake</code></td><td>❌</td><td>–</td><td>handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</td></tr></tbody></table>
+<p>Launch argv: <code>/tmp/opencode/mcphi-runs/mcphi-run-tuxm3uy1/venv/bin/python -m mirobody</code>
+</p>
+<h2>Tools (0)</h2>
+<p class="subnote">none listed</p>
+
+<h2>Server stderr (tail)</h2><pre class="call">usage: mirobody [-h]
+                {serve,dev,worker,doctor,fetch,parse,import,resolve,device-bundle,mcp,migrate-observations,migrate-genotypes,recode} ...
+mirobody: error: the following arguments are required: command
+</pre>
+<h2>Errors</h2><pre class="call">handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</pre>
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.thetahealth-mirobody.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.thetahealth-mirobody.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

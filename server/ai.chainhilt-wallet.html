@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.chainhilt/wallet.">
+<title>MCP Health Index — ChainHilt Wallet</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>ChainHilt Wallet</h1>
+<p class="tagline"><img src="../badges/ai.chainhilt-wallet.svg" alt="badge"> <span class="chip ok">PASS</span>
+&nbsp; stage: <code>call</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.chainhilt/wallet</td></tr>
+<tr><td>Source</td><td>npm — <code>chainhilt@0.0.4</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/bancorprotocol/chainhilt-wallet">https://github.com/bancorprotocol/chainhilt-wallet</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>Local wallet that signs and sends ChainHilt-verified actions</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>5.46s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>0.68s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.03s</td><td></td></tr><tr><td><code>list_resources</code></td><td>❌</td><td>–</td><td>MCPError: Method not found</td></tr><tr><td><code>call</code></td><td>✅</td><td>0.01s</td><td>tool=mcp_status args={}</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-9xcbuh1g/node_modules/chainhilt/dist/cli.js</code>
+</p>
+<h2>Tools (6)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>wallet_setup</code></td><td>Open private local wallet setup to import or create a wallet, or view its receive address and QR code for a manual deposit. Takes no key and returns n</td><td><code></code></td></tr><tr><td><code>mcp_status</code></td><td>Show local MCP wallet addresses and missing configuration.</td><td><code></code></td></tr><tr><td><code>get_chain_info</code></td><td>Get chain information for a chain name or id.</td><td><code></code></td></tr><tr><td><code>wallet_balance</code></td><td>Read the local/passed MCP wallet native or ERC-20 balance on a chain.
+        If no address is passed, reads local MCP wallet address.
+        If no t</td><td><code></code></td></tr><tr><td><code>authorize_request</code></td><td>Authorize one ChainHilt API request that returns actions for this wallet. Call it with the exact method, URL and JSON body you are about to send, then</td><td><code></code></td></tr><tr><td><code>process_action</code></td><td>Sign typed data or send transactions for actions the ChainHilt API returned to a request this wallet authorized with authorize_request. Pass nonce and</td><td><code></code></td></tr></tbody></table>
+<h2>Call result preview</h2><pre class="call">{
+  &quot;apiBaseUrl&quot;: &quot;https://chainhilt.ai/api/v1&quot;,
+  &quot;activeChainId&quot;: 8453,
+  &quot;availableChains&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;name&quot;: &quot;Ethereum&quot;
+    },
+    {
+      &quot;id&quot;: 10,
+      &quot;name&quot;: &quot;OP Mainnet&quot;
+    },
+    {
+      &quot;id&quot;: 25,
+      &quot;name&quot;: &quot;Cronos Mainnet&quot;
+    },
+    {
+      &quot;id&quot;: 56,
+      &quot;name&quot;: &quot;BNB Smart Chain&quot;
+    },
+    {
+      &quot;id&quot;: 100,
+      &quot;name&quot;: &quot;Gnosis&quot;
+    },
+    {
+      &quot;id&quot;: 13</pre>
+
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.chainhilt-wallet.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.chainhilt-wallet.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

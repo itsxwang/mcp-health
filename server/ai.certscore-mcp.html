@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.certscore/mcp.">
+<title>MCP Health Index — CertScore.ai</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>CertScore.ai</h1>
+<p class="tagline"><img src="../badges/ai.certscore-mcp.svg" alt="badge"> <span class="chip ok">PASS</span>
+&nbsp; stage: <code>call</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.certscore/mcp</td></tr>
+<tr><td>Source</td><td>npm — <code>@certscore/mcp@0.2.32</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/ergoveritas1-alt/certscore.ai">https://github.com/ergoveritas1-alt/certscore.ai</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>MCP server for CertScore.ai public website risk-signal workflows.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>3.80s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>1.32s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.11s</td><td></td></tr><tr><td><code>list_resources</code></td><td>✅</td><td>0.01s</td><td></td></tr><tr><td><code>call</code></td><td>✅</td><td>1.73s</td><td>tool=certscore_get_connection_status args={}</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-ktkxbx7p/node_modules/@certscore/mcp/dist/certscore-mcp.mjs</code>
+</p>
+<h2>Tools (14)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>certscore_get_connection_status</code></td><td>Read current authenticated connection mode, granted scopes, workspace access, rolling scan quota and recovery action. No scan ID is needed and no scan</td><td><code></code></td></tr><tr><td><code>certscore_scan_site</code></td><td>Use for a user-requested website launch review, vendor assessment, cookie/tracker inventory, consent/GPC investigation or privacy-policy review. A pub</td><td><code></code></td></tr><tr><td><code>certscore_get_scan</code></td><td>Retrieve the API v2 public-safe scan resource, including completed-limited no-go disposition, reason-specific guidance, and timing when available.</td><td><code></code></td></tr><tr><td><code>certscore_get_scan_status</code></td><td>Returns lifecycle status for a stable CertScore scanId. Active responses include phase, heartbeat, estimated progress, retryAfterSeconds, and sometime</td><td><code></code></td></tr><tr><td><code>certscore_get_report</code></td><td>Focused follow-up: retrieve a bounded Pulse report with high-signal TextContent and typed structuredContent, including customer-safe no-go messaging. </td><td><code></code></td></tr><tr><td><code>certscore_get_evidence</code></td><td>Focused follow-up: retrieve a bounded public-safe evidence packet with a concise TextContent digest and typed structuredContent. For broad privacy que</td><td><code></code></td></tr><tr><td><code>certscore_get_report_evidence_page</code></td><td>For a focused question, use section=cmp, cms, consent, gpc, policy, tracking, transport, forms or accessibility. This returns selected retained report</td><td><code></code></td></tr><tr><td><code>certscore_get_scan_bundle</code></td><td>Main answer for a completed or completed-limited scan: canonical findings, next steps, supporting evidence, score, date/region, coverage and report UR</td><td><code></code></td></tr><tr><td><code>certscore_export_findings</code></td><td>Return structured findings plus completed-limited no-go disposition and guidance for downstream review or ticketing workflows.</td><td><code></code></td></tr><tr><td><code>certscore_list_findings</code></td><td>Focused follow-up: list bounded API v2 public-safe findings already projected by the canonical pipeline, with matching high-signal TextContent and typ</td><td><code></code></td></tr><tr><td><code>certscore_get_pre_consent_cookies_trackers</code></td><td>Focused follow-up: retrieve bounded row-level public-safe pre-consent cookie/tracker evidence with matching TextContent and typed structuredContent. F</td><td><code></code></td></tr><tr><td><code>certscore_explain_finding</code></td><td>Explain one projected finding with public evidence, caveats, reviewer next steps, and reason-specific no-go context when applicable.</td><td><code></code></td></tr><tr><td><code>certscore_get_latest_domain_scan</code></td><td>Retrieve the latest eligible API v2 public-safe scan for a domain.</td><td><code></code></td></tr><tr><td><code>certscore_get_latest_domain_pre_consent_cookies_trackers</code></td><td>Focused follow-up: retrieve bounded row-level public-safe pre-consent cookie/tracker evidence from the latest eligible scan for a domain, with matchin</td><td><code></code></td></tr></tbody></table>
+<h2>Call result preview</h2><pre class="call">{&quot;error&quot;:{&quot;code&quot;:&quot;internal_error&quot;,&quot;reasonCode&quot;:null,&quot;message&quot;:&quot;fetch failed&quot;,&quot;retryable&quot;:false,&quot;retryAfterSeconds&quot;:null,&quot;recommendedNextAction&quot;:&quot;Correct the request using the error details, then retry only if the requested operation is still appropriate.&quot;}}</pre>
+
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.certscore-mcp.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.certscore-mcp.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

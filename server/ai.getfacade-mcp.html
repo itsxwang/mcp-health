@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.getfacade/mcp.">
+<title>MCP Health Index — GetFacade</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>GetFacade</h1>
+<p class="tagline"><img src="../badges/ai.getfacade-mcp.svg" alt="badge"> <span class="chip bad">FAIL</span>
+&nbsp; stage: <code>handshake</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.getfacade/mcp</td></tr>
+<tr><td>Source</td><td>npm — <code>@getfacade/mcp@0.2.0</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/getfacade/mcp">https://github.com/getfacade/mcp</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>Designs a real house exterior on its own photo, prices it line by line and documents it.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>4.03s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>❌</td><td>–</td><td>handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-ers7y6jh/node_modules/@getfacade/mcp/src/index.js</code>
+</p>
+<h2>Tools (0)</h2>
+<p class="subnote">none listed</p>
+
+<h2>Server stderr (tail)</h2><pre class="call">file:///tmp/opencode/mcphi-runs/mcphi-run-ers7y6jh/node_modules/@getfacade/mcp/src/api.js:45
+      throw new Error(
+            ^
+
+Error: GETFACADE_API_KEY is not set. Issue an agent key at https://app.getfacade.ai/account/agent-keys and pass it in the environment.
+    at new GetFacadeApi (file:///tmp/opencode/mcphi-runs/mcphi-run-ers7y6jh/node_modules/@getfacade/mcp/src/api.js:45:13)
+    at file:///tmp/opencode/mcphi-runs/mcphi-run-ers7y6jh/node_modules/@getfacade/mcp/src/index.js:15:13
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.1
+</pre>
+<h2>Errors</h2><pre class="call">handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</pre>
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.getfacade-mcp.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.getfacade-mcp.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

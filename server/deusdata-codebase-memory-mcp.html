@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server github:DeusData/codebase-memory-mcp.">
+<title>MCP Health Index — codebase-memory-mcp</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>codebase-memory-mcp</h1>
+<p class="tagline"><img src="../badges/deusdata-codebase-memory-mcp.svg" alt="badge"> <span class="chip ok">PASS</span>
+&nbsp; stage: <code>call</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>github:DeusData/codebase-memory-mcp</td></tr>
+<tr><td>Source</td><td>npm — <code>codebase-memory-mcp@0.12.1</code> (github-search)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/DeusData/codebase-memory-mcp">https://github.com/DeusData/codebase-memory-mcp</a> ★ 48,645</td></tr>
+<tr><td>License</td><td>MIT</td></tr>
+<tr><td>Last push</td><td>2026-11-14</td></tr>
+<tr><td>Description</td><td>Fast code intelligence for AI coding agents — installs a verified native runtime set</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>19.52s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>2.10s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.02s</td><td></td></tr><tr><td><code>list_resources</code></td><td>✅</td><td>0.01s</td><td></td></tr><tr><td><code>call</code></td><td>✅</td><td>0.01s</td><td>tool=index_repository args={}</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-k1nx4nq_/node_modules/codebase-memory-mcp/bin.js</code>
+</p>
+<h2>Tools (17)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>index_repository</code></td><td>Index a repository. full/moderate add semantics; fast omits them; cross-repo-intelligence links services. Reports coverage gaps. Waits for the whole i</td><td><code></code></td></tr><tr><td><code>search_graph</code></td><td>Find symbols via BM25 query, regex name/qn filters, or semantic_query. Rows keep qn/file/lines and in/out over CALLS/USAGE/CALL_REFERENCE/INHERITS/IMP</td><td><code></code></td></tr><tr><td><code>query_graph</code></td><td>Read-only Cypher for multi-hop, aggregation, complexity, or cross-service analysis. Default: 200 visible rows with exact/lower-bound totals and trunca</td><td><code></code></td></tr><tr><td><code>trace_path</code></td><td>Trace callers/callees, data flow, or cross-service paths. Defaults exclude tests and resolver evidence. Rows keep qn/hop with explicit totals, relatio</td><td><code></code></td></tr><tr><td><code>get_code_snippet</code></td><td>Read a search_graph symbol. auto bounds source and outlines large containers; full restores up to 500 lines. Source/outline pages continue; coverage_n</td><td><code></code></td></tr><tr><td><code>get_file_outline</code></td><td>Declaration outline of one exact repository-relative file: optional exact label filter, source order, exact total/offset/limit paging; file/folder/con</td><td><code></code></td></tr><tr><td><code>get_graph_schema</code></td><td>Get node-label and edge-type counts. diagnostics=full also lists queryable properties.</td><td><code></code></td></tr><tr><td><code>compare_graphs</code></td><td>Compare two indexed snapshots: deterministic target-only additions and base-only removals of stable node/edge identities; each set capped by limit and</td><td><code></code></td></tr><tr><td><code>get_architecture</code></td><td>Bounded static architecture; poll pending jobs. include_behavior_evidence=true adds indexed call arguments, parameter declarations and return types; n</td><td><code></code></td></tr><tr><td><code>search_code</code></td><td>Graph-ranked text search: compact symbols, full bounded source, or file paths.</td><td><code></code></td></tr><tr><td><code>list_projects</code></td><td>List projects with stable paging. Identity is lean; stats adds graph sizes.</td><td><code></code></td></tr><tr><td><code>delete_project</code></td><td>Delete a project from the index</td><td><code></code></td></tr><tr><td><code>index_status</code></td><td>Project readiness, counts, root, watch state, coverage gaps, and doc_links (doc-comment references: MENTIONS edges, unresolved by reason). diagnostics</td><td><code></code></td></tr><tr><td><code>check_index_coverage</code></td><td>Best-effort exact-path/scope coverage and freshness, paged separately. full diagnostics adds raw detail. Clean is not proof of completeness.</td><td><code></code></td></tr><tr><td><code>detect_changes</code></td><td>Map a Git diff to files and impact. Page with snapshot cursors.</td><td><code></code></td></tr><tr><td><code>manage_adr</code></td><td>Outline an ADR by default; get reads it; update replaces it</td><td><code></code></td></tr><tr><td><code>ingest_traces</code></td><td>Record observed runtime calls so the graph can distinguish observed from merely possible paths. Each trace is a call path (qualified names, adjacent =</td><td><code></code></td></tr></tbody></table>
+<h2>Call result preview</h2><pre class="call">repo_path is required</pre>
+<h2>Server stderr (tail)</h2><pre class="call">level=warn msg=daemon.private_dir_group_writable_ancestor mode=0775
+level=warn msg=daemon.private_dir_group_writable_ancestor mode=0775
+level=warn msg=daemon.private_dir_group_writable_ancestor mode=0775
+level=warn msg=daemon.private_dir_group_writable_ancestor mode=0775
+level=warn msg=daemon.private_dir_group_writable_ancestor mode=0775
+level=warn msg=daemon.private_dir_group_writable_ancestor mode=0775
+level=warn msg=daemon.private_dir_group_writable_ancestor mode=0775
+level=warn msg=daemon.private_dir_group_writable_ancestor mode=0775
+</pre>
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/deusdata-codebase-memory-mcp.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/deusdata-codebase-memory-mcp.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

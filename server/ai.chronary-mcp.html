@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.chronary/mcp.">
+<title>MCP Health Index — Chronary</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>Chronary</h1>
+<p class="tagline"><img src="../badges/ai.chronary-mcp.svg" alt="badge"> <span class="chip bad">FAIL</span>
+&nbsp; stage: <code>handshake</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.chronary/mcp</td></tr>
+<tr><td>Source</td><td>npm — <code>@chronary/mcp@1.6.2</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/Chronary/chronary-mcp">https://github.com/Chronary/chronary-mcp</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>Calendar API for AI agents: events, availability, Google/Microsoft setup, scheduling, and iCal.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>10.91s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>❌</td><td>–</td><td>handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-i21z8uiv/node_modules/@chronary/mcp/dist/index.js</code>
+</p>
+<h2>Tools (0)</h2>
+<p class="subnote">none listed</p>
+
+<h2>Server stderr (tail)</h2><pre class="call">Error: CHRONARY_API_KEY environment variable is required.
+Run &#x27;chronary-mcp --help&#x27; for usage.
+</pre>
+<h2>Errors</h2><pre class="call">handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed | CLI-style package: prints usage/help and exits when invoked bare (no MCP server subcommand declared in registry metadata)</pre>
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.chronary-mcp.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.chronary-mcp.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

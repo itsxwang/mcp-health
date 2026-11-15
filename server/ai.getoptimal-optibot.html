@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.getoptimal/optibot.">
+<title>MCP Health Index — Optibot</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>Optibot</h1>
+<p class="tagline"><img src="../badges/ai.getoptimal-optibot.svg" alt="badge"> <span class="chip ok">PASS</span>
+&nbsp; stage: <code>call</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.getoptimal/optibot</td></tr>
+<tr><td>Source</td><td>npm — <code>@optimalai/optibot-mcp@1.4.1</code> (registry)</td></tr>
+<tr><td>Repo</td><td>– ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>AI code review for your AI assistant — review local changes, branch diffs, and patch files.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>7.24s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>0.91s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.02s</td><td></td></tr><tr><td><code>list_resources</code></td><td>❌</td><td>–</td><td>MCPError: Method not found</td></tr><tr><td><code>call</code></td><td>✅</td><td>0.02s</td><td>tool=list_api_keys args={}</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-igntjmtw/node_modules/@optimalai/optibot-mcp/dist/index.js</code>
+</p>
+<h2>Tools (22)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>review_local_changes</code></td><td>Review uncommitted local changes (git diff HEAD). Runs an AI code review on all staged and unstaged changes in the current repository.</td><td><code></code></td></tr><tr><td><code>review_branch</code></td><td>Review changes against a target branch. Compares the current branch against the specified branch (or auto-detects origin/main, origin/master, origin/d</td><td><code></code></td></tr><tr><td><code>review_diff_file</code></td><td>Review an arbitrary diff/patch file. Sends the contents of a diff file for AI code review.</td><td><code></code></td></tr><tr><td><code>login</code></td><td>Authenticate with Optibot via browser OAuth. Opens a browser window for login and saves credentials locally. Token expires after 90 days. If your acco</td><td><code></code></td></tr><tr><td><code>logout</code></td><td>Remove saved Optibot credentials from this machine.</td><td><code></code></td></tr><tr><td><code>check_auth</code></td><td>Check current Optibot authentication status. Shows whether credentials are configured via environment variable or config file, and the active organiza</td><td><code></code></td></tr><tr><td><code>create_api_key</code></td><td>Create a new Optibot API key for CI/CD or automation. The key is only shown once — copy it immediately.</td><td><code></code></td></tr><tr><td><code>list_api_keys</code></td><td>List all Optibot API keys associated with your account.</td><td><code></code></td></tr><tr><td><code>delete_api_key</code></td><td>Delete an Optibot API key by ID. Use list_api_keys to find the ID.</td><td><code></code></td></tr><tr><td><code>list_organizations</code></td><td>List all Optibot organizations you belong to. The currently active organization is marked with &quot;*&quot;. Use switch_organization to change it.</td><td><code></code></td></tr><tr><td><code>get_current_organization</code></td><td>Show the currently active Optibot organization and your role in it. Read from the JWT organizationId claim (the authoritative source).</td><td><code></code></td></tr><tr><td><code>switch_organization</code></td><td>Switch the active Optibot organization. Rescopes your token so subsequent tool calls act as that organization. Accept either organizationId or name — </td><td><code></code></td></tr><tr><td><code>get_status</code></td><td>Show full Optibot status: authentication method, active organization, and review quota. Mirrors `optibot status` from the CLI.</td><td><code></code></td></tr><tr><td><code>trigger_security_scan</code></td><td>Trigger an AI security scan on a repository in the active organization. Blocks until the scan completes (or the timeout is reached, in which case it r</td><td><code></code></td></tr><tr><td><code>list_security_scans</code></td><td>List recent security scans for the active organization. Optionally filter by repository. Paginated.</td><td><code></code></td></tr><tr><td><code>get_security_scan</code></td><td>Fetch the full markdown report and metadata for a specific security scan by id. The backend has no by-id endpoint, so this pages through recent scans </td><td><code></code></td></tr><tr><td><code>get_security_usage</code></td><td>Show current-month token usage and cost for security scans on the active organization.</td><td><code></code></td></tr><tr><td><code>get_security_pricing</code></td><td>Show per-tier pricing and markup multiplier for security scans.</td><td><code></code></td></tr><tr><td><code>list_scannable_repos</code></td><td>List repositories available to scan in the active organization. Use these ids/names when calling trigger_security_scan.</td><td><code></code></td></tr><tr><td><code>get_security_config</code></td><td>Show the scheduled-scan configuration (schedule, enabled repos, budget, tier) for the active organization.</td><td><code></code></td></tr><tr><td><code>update_security_config</code></td><td>Update the scheduled-scan configuration for the active organization. Only specified fields are changed; unspecified fields keep their current value. W</td><td><code></code></td></tr><tr><td><code>setup_ci</code></td><td>Set up Optibot for CI/CD: mints a long-lived API key bound to the currently active organization and returns the export line ready to paste into the us</td><td><code></code></td></tr></tbody></table>
+<h2>Call result preview</h2><pre class="call">Error: Not authenticated. Set the OPTIBOT_API_KEY environment variable or use the login tool.</pre>
+<h2>Server stderr (tail)</h2><pre class="call">Optibot MCP Server running on stdio
+</pre>
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.getoptimal-optibot.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.getoptimal-optibot.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

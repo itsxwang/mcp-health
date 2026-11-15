@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.agenttrust/mcp-server.">
+<title>MCP Health Index — AgentTrust — Identity &amp; Trust for A2A Agents</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>AgentTrust — Identity &amp; Trust for A2A Agents</h1>
+<p class="tagline"><img src="../badges/ai.agenttrust-mcp-server.svg" alt="badge"> <span class="chip bad">FAIL</span>
+&nbsp; stage: <code>handshake</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.agenttrust/mcp-server</td></tr>
+<tr><td>Source</td><td>npm — <code>@agenttrust/mcp-server@1.1.1</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/agenttrust/mcp-server">https://github.com/agenttrust/mcp-server</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>Identity, trust, and A2A orchestration for autonomous AI agents. Official A2A partner.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>3.99s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>❌</td><td>–</td><td>handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-7okctglk/node_modules/@agenttrust/mcp-server/dist/index.js</code>
+</p>
+<h2>Tools (0)</h2>
+<p class="subnote">none listed</p>
+
+<h2>Server stderr (tail)</h2><pre class="call">Fatal error: Error: AgentTrust is not configured. Run `agenttrust-mcp init` or set AGENTTRUST_API_KEY.
+    at makeError (file:///tmp/opencode/mcphi-runs/mcphi-run-7okctglk/node_modules/@agenttrust/mcp-server/dist/index.js:24:12)
+    at ensureConfigReady (file:///tmp/opencode/mcphi-runs/mcphi-run-7okctglk/node_modules/@agenttrust/mcp-server/dist/index.js:983:15)
+    at async runStdioServer (file:///tmp/opencode/mcphi-runs/mcphi-run-7okctglk/node_modules/@agenttrust/mcp-server/dist/index.js:991:5)
+    at async main (file:///tmp/opencode/mcphi-runs/mcphi-run-7okctglk/node_modules/@agenttrust/mcp-server/dist/index.js:1072:5)
+</pre>
+<h2>Errors</h2><pre class="call">handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</pre>
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.agenttrust-mcp-server.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.agenttrust-mcp-server.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

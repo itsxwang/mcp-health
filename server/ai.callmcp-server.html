@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.callmcp/server.">
+<title>MCP Health Index — CallMCP — Phone Call MCP Server</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>CallMCP — Phone Call MCP Server</h1>
+<p class="tagline"><img src="../badges/ai.callmcp-server.svg" alt="badge"> <span class="chip bad">FAIL</span>
+&nbsp; stage: <code>handshake</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.callmcp/server</td></tr>
+<tr><td>Source</td><td>npm — <code>@callmcp/server@0.1.5</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/CallMCP/callmcp">https://github.com/CallMCP/callmcp</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>Phone call MCP server: AI agents place and answer real calls, text, email and WhatsApp via KaiCalls.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>7.01s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>❌</td><td>–</td><td>handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-pp4lsuda/node_modules/@callmcp/server/dist/index.js</code>
+</p>
+<h2>Tools (0)</h2>
+<p class="subnote">none listed</p>
+
+<h2>Server stderr (tail)</h2><pre class="call">[callmcp-server] fatal: Error: no drivers configured; refusing to start (explicitly configure type: &quot;mock&quot; for sandbox mode)
+    at DriverRegistry.load (file:///tmp/opencode/mcphi-runs/mcphi-run-pp4lsuda/node_modules/@callmcp/server/dist/driverRegistry.js:179:19)
+    at main (file:///tmp/opencode/mcphi-runs/mcphi-run-pp4lsuda/node_modules/@callmcp/server/dist/index.js:147:26)
+</pre>
+<h2>Errors</h2><pre class="call">handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</pre>
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.callmcp-server.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.callmcp-server.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.elicitly/elicitly.">
+<title>MCP Health Index — Elicitly</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>Elicitly</h1>
+<p class="tagline"><img src="../badges/ai.elicitly-elicitly.svg" alt="badge"> <span class="chip warn">PARTIAL</span>
+&nbsp; stage: <code>list_tools</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.elicitly/elicitly</td></tr>
+<tr><td>Source</td><td>npm — <code>elicitly@0.8.6</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/elicitly/elicitly">https://github.com/elicitly/elicitly</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>Human-in-the-loop for AI agents over MCP elicitation: confirm/form dialogs plus a capability doctor</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>4.42s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>0.73s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.03s</td><td></td></tr><tr><td><code>list_resources</code></td><td>✅</td><td>0.00s</td><td></td></tr><tr><td><code>call</code></td><td>⏭</td><td>–</td><td>tool= args={} — no read-only-looking tool name found; call skipped by policy</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-t_9ntouq/node_modules/elicitly/dist/cli.mjs</code>
+</p>
+<h2>Tools (4)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>elicit_confirm</code></td><td>Ask the user an OK/Cancel confirmation via elicitation (convenience wrapper over elicit_form), modeled on JavaScript&#x27;s confirm(). Use this for a singl</td><td><code></code></td></tr><tr><td><code>elicit_doctor</code></td><td>Check whether the connected MCP host actually supports elicitation (and sampling/roots) before relying on it — advertising a capability is not the sam</td><td><code></code></td></tr><tr><td><code>elicit_form</code></td><td>Trigger a form elicitation with a caller-supplied JSON schema; returns the raw {action, content}. For a plain OK/Cancel question, prefer elicit_confir</td><td><code></code></td></tr><tr><td><code>elicit_display</code></td><td>Show information to the user as rendered HTML instead of Markdown: pass a LiquidJS template and a JSON context, and hosts that support MCP Apps render</td><td><code></code></td></tr></tbody></table>
+
+
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.elicitly-elicitly.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.elicitly-elicitly.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

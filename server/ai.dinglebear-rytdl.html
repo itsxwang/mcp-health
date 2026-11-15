@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.dinglebear/rytdl.">
+<title>MCP Health Index — YTDL RMCP</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>YTDL RMCP</h1>
+<p class="tagline"><img src="../badges/ai.dinglebear-rytdl.svg" alt="badge"> <span class="chip bad">FAIL</span>
+&nbsp; stage: <code>list_tools</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.dinglebear/rytdl</td></tr>
+<tr><td>Source</td><td>npm — <code>@dinglebear/rytdl@1.0.4</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/dinglebear-ai/rytdl">https://github.com/dinglebear-ai/rytdl</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>yt-dlp search, download, metadata, delivery, and Plex workflows over MCP and CLI.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>5.89s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>0.20s</td><td></td></tr><tr><td><code>list_tools</code></td><td>❌</td><td>–</td><td>list_tools: ExceptionGroup: ExceptionGroup: ValidationError: 2 validation errors for ListToolsResult
+tools.2.outputSchema.type
+  Field required [type=missing, input_value={'$schema': 'https://json...a', 'title': 'AnyValue'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+tools.7.outputSchema.type
+  Field required [type=missing, input_value={'$schema': 'https://js</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-30zbmuvl/node_modules/@dinglebear/rytdl/bin/rytdl.js</code>
+</p>
+<h2>Tools (0)</h2>
+<p class="subnote">none listed</p>
+
+<h2>Server stderr (tail)</h2><pre class="call">arams { meta: None, protocol_version: ProtocolVersion(&quot;2025-11-25&quot;), capabilities: ClientCapabilities { experimental: None, extensions: None, roots: None, sampling: None, elicitation: None }, client_info: Implementation { name: &quot;mcp&quot;, title: None, version: &quot;0.1.0&quot;, description: None, icons: None, website_url: None } })
+2026-11-14T22:38:49.301781Z  INFO serve_inner: rmcp::service: received notification notification=InitializedNotification(NotificationNoParam { method: InitializedNotificationMethod, extensions: Extensions })
+2026-11-14T22:38:49.301833Z  INFO serve_inner: rmcp::handler::server: client initialized
+2026-11-14T22:38:49.306555Z  INFO serve_inner: rmcp::service: input stream terminated
+2026-11-14T22:38:49.306596Z  INFO serve_inner: rmcp::service: serve finished quit_reason=Closed
+</pre>
+<h2>Errors</h2><pre class="call">list_tools: ExceptionGroup: ExceptionGroup: ValidationError: 2 validation errors for ListToolsResult
+tools.2.outputSchema.type
+  Field required [type=missing, input_value={&#x27;$schema&#x27;: &#x27;https://json...a&#x27;, &#x27;title&#x27;: &#x27;AnyValue&#x27;}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+tools.7.outputSchema.type
+  Field required [type=missing, input_value={&#x27;$schema&#x27;: &#x27;https://js</pre>
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.dinglebear-rytdl.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.dinglebear-rytdl.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

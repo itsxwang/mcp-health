@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server github:czlonkowski/n8n-mcp.">
+<title>MCP Health Index — n8n-mcp</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>n8n-mcp</h1>
+<p class="tagline"><img src="../badges/czlonkowski-n8n-mcp.svg" alt="badge"> <span class="chip bad">FAIL</span>
+&nbsp; stage: <code>list_tools</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>github:czlonkowski/n8n-mcp</td></tr>
+<tr><td>Source</td><td>npm — <code>n8n-mcp@2.102.0</code> (github-search)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/czlonkowski/n8n-mcp">https://github.com/czlonkowski/n8n-mcp</a> ★ 23,252</td></tr>
+<tr><td>License</td><td>MIT</td></tr>
+<tr><td>Last push</td><td>2026-11-11</td></tr>
+<tr><td>Description</td><td>Integration between n8n workflow automation and Model Context Protocol (MCP)</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>6.10s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>1.19s</td><td></td></tr><tr><td><code>list_tools</code></td><td>❌</td><td>–</td><td>list_tools: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-ew_4p1wz/node_modules/n8n-mcp/dist/mcp/stdio-wrapper.js</code>
+</p>
+<h2>Tools (0)</h2>
+<p class="subnote">none listed</p>
+
+<h2>Server stderr (tail)</h2><pre class="call">telemetry disable                               ║
+║                                                             ║
+║ Data deletion requests:                                     ║
+║ Email romuald@n8n-mcp.com with your installation ID         ║
+║                                                             ║
+║ Full policy:                                                ║
+║ https://github.com/czlonkowski/n8n-mcp/blob/main/PRIVACY.md ║
+║                                                             ║
+╚═════════════════════════════════════════════════════════════╝
+Unhandled rejection: RangeError: WebAssembly.instantiate(): Out of memory: Cannot allocate Wasm memory for new instance
+    at lazyllhttp (/tmp/opencode/mcphi-runs/mcphi-run-ew_4p1wz/node_modules/undici/lib/dispatcher/client-h1.js:83:28)
+</pre>
+<h2>Errors</h2><pre class="call">list_tools: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</pre>
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/czlonkowski-n8n-mcp.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/czlonkowski-n8n-mcp.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

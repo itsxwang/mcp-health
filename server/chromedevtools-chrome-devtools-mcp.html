@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server github:ChromeDevTools/chrome-devtools-mcp.">
+<title>MCP Health Index — chrome-devtools-mcp</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>chrome-devtools-mcp</h1>
+<p class="tagline"><img src="../badges/chromedevtools-chrome-devtools-mcp.svg" alt="badge"> <span class="chip ok">PASS</span>
+&nbsp; stage: <code>call</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>github:ChromeDevTools/chrome-devtools-mcp</td></tr>
+<tr><td>Source</td><td>npm — <code>chrome-devtools-mcp@1.13.0</code> (github-search)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/ChromeDevTools/chrome-devtools-mcp">https://github.com/ChromeDevTools/chrome-devtools-mcp</a> ★ 56,244</td></tr>
+<tr><td>License</td><td>Apache-2.0</td></tr>
+<tr><td>Last push</td><td>2026-11-13</td></tr>
+<tr><td>Description</td><td>MCP server for Chrome DevTools</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>2.80s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>1.25s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.04s</td><td></td></tr><tr><td><code>list_resources</code></td><td>❌</td><td>–</td><td>MCPError: Method not found</td></tr><tr><td><code>call</code></td><td>✅</td><td>0.01s</td><td>tool=get_css_styles args={}</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-axqz4dg5/node_modules/chrome-devtools-mcp/out/Default/gen/src/bin/chrome-devtools-mcp.js</code>
+</p>
+<h2>Tools (33)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>click</code></td><td>Clicks on the provided element</td><td><code></code></td></tr><tr><td><code>close_page</code></td><td>Closes the page by its index. The last open page cannot be closed.</td><td><code></code></td></tr><tr><td><code>drag</code></td><td>Drag an element onto another element</td><td><code></code></td></tr><tr><td><code>emulate</code></td><td>Emulates various features on the target page. Each call replaces all emulation settings (except extraHttpHeaders), so pass all desired settings in a s</td><td><code></code></td></tr><tr><td><code>evaluate_script</code></td><td>Evaluate JavaScript inside the target page. The source can be provided inline or loaded from a local file. Returns the response as JSON, so returned v</td><td><code></code></td></tr><tr><td><code>fill</code></td><td>Type text into an input, text area or select an option from a &lt;select&gt; element.</td><td><code></code></td></tr><tr><td><code>fill_form</code></td><td>Fill out multiple form elements (inputs, selects, checkboxes, radios) at once. ALWAYS prefer this tool over multiple individual &#x27;fill&#x27; or &#x27;click&#x27; call</td><td><code></code></td></tr><tr><td><code>get_console_message</code></td><td>Gets a console message by its ID. You can get all messages by calling list_console_messages.</td><td><code></code></td></tr><tr><td><code>get_css_styles</code></td><td>Retrieve matched CSS rules, inline styles (element.style), inherited styles, custom properties, and cascade wrappers (@layer, @media, @container, @sco</td><td><code></code></td></tr><tr><td><code>get_network_request</code></td><td>Gets a network request by an optional reqid, if omitted returns the currently selected request in the DevTools Network panel. Useful for inspecting re</td><td><code></code></td></tr><tr><td><code>handle_dialog</code></td><td>If a browser dialog was opened, use this command to handle it</td><td><code></code></td></tr><tr><td><code>hover</code></td><td>Hover over the provided element</td><td><code></code></td></tr><tr><td><code>lighthouse_audit</code></td><td>Get Lighthouse scores, failing audits, and the DOM nodes they flag for accessibility, SEO, best practices, and agentic browsing. Full reports are save</td><td><code></code></td></tr><tr><td><code>list_console_messages</code></td><td>List all console messages for the target page since the last navigation.</td><td><code></code></td></tr><tr><td><code>list_network_requests</code></td><td>Lists the most recent requests for the target page since the last navigation.</td><td><code></code></td></tr><tr><td><code>list_pages</code></td><td>Get a list of pages open in the browser.</td><td><code></code></td></tr><tr><td><code>navigate_page</code></td><td>Go to a URL, or back, forward, or reload. Use project URL if not specified otherwise.</td><td><code></code></td></tr><tr><td><code>new_page</code></td><td>Open a new tab and load a URL. Use project URL if not specified otherwise.</td><td><code></code></td></tr><tr><td><code>performance_analyze_insight</code></td><td>Provides more detailed information on a specific Performance Insight of an insight set that was highlighted in the results of a trace recording.</td><td><code></code></td></tr><tr><td><code>performance_start_trace</code></td><td>Start a performance trace on the target webpage. Use to find frontend performance issues, Core Web Vitals (LCP, INP, CLS), and improve page load speed</td><td><code></code></td></tr><tr><td><code>performance_stop_trace</code></td><td>Stop the active performance trace recording on the target webpage.</td><td><code></code></td></tr><tr><td><code>press_key</code></td><td>Press a key or key combination. Use this when other input methods like fill() cannot be used (e.g., keyboard shortcuts, navigation keys, or special ke</td><td><code></code></td></tr><tr><td><code>resize_page</code></td><td>Resizes the page&#x27;s window so that the page has specified dimension</td><td><code></code></td></tr><tr><td><code>screencast_start</code></td><td>Starts recording a screencast (video) of the target page.</td><td><code></code></td></tr><tr><td><code>screencast_stop</code></td><td>Stops the active screencast recording on the target page.</td><td><code></code></td></tr><tr><td><code>select_page</code></td><td>Select a page as a context for future tool calls.</td><td><code></code></td></tr><tr><td><code>set_logpoints</code></td><td>Set the complete set of logpoints of the selected page: logpoints not in the list are removed, new ones are added, and an empty list removes all. A lo</td><td><code></code></td></tr><tr><td><code>take_heapsnapshot</code></td><td>Capture a heap snapshot of the target page. Use to analyze the memory distribution of JavaScript objects and debug memory leaks.</td><td><code></code></td></tr><tr><td><code>take_screenshot</code></td><td>Take a screenshot of the page or element.</td><td><code></code></td></tr><tr><td><code>take_snapshot</code></td><td>Take a text snapshot of the target page based on the a11y tree. The snapshot lists page elements along with a unique
+identifier (uid). Always use the </td><td><code></code></td></tr><tr><td><code>type_text</code></td><td>Type text using keyboard into a previously focused input</td><td><code></code></td></tr><tr><td><code>upload_file</code></td><td>Upload a file through a provided element.</td><td><code></code></td></tr><tr><td><code>wait_for</code></td><td>Wait for the specified text to appear on the selected page. By default, hidden text is also matched. Set visible to true to wait until the matched tex</td><td><code></code></td></tr></tbody></table>
+<h2>Call result preview</h2><pre class="call">Input validation error: Invalid arguments for tool get_css_styles: pageId: Invalid input: expected number, received undefined, uid: Invalid input: expected string, received undefined</pre>
+<h2>Server stderr (tail)</h2><pre class="call"> clients allowing them to inspect,
+debug, and modify any data in the browser or DevTools.
+Avoid sharing sensitive or personal information that you do not want to share with MCP clients.
+Performance tools may send trace URLs to the Google CrUX API to fetch real-user experience data. To disable, run with --no-performance-crux.
+
+Google collects usage statistics to improve Chrome DevTools MCP. To opt-out, run with --no-usage-statistics.
+For more details, visit: https://github.com/ChromeDevTools/chrome-devtools-mcp#usage-statistics
+[chrome-devtools-mcp] The connecting client did not negotiate the MCP roots capability. Tools that read or write local files will be restricted to the OS temp directory. To restore the previous unrestricted behavior, start the server with --allow-unrestricted-paths.
+</pre>
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/chromedevtools-chrome-devtools-mcp.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/chromedevtools-chrome-devtools-mcp.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

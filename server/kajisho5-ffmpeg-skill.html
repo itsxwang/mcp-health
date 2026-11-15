@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server github:kajisho5/ffmpeg-skill.">
+<title>MCP Health Index — ffmpeg-skill</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>ffmpeg-skill</h1>
+<p class="tagline"><img src="../badges/kajisho5-ffmpeg-skill.svg" alt="badge"> <span class="chip bad">FAIL</span>
+&nbsp; stage: <code>handshake</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>github:kajisho5/ffmpeg-skill</td></tr>
+<tr><td>Source</td><td>npm — <code>ffmpeg-skill@3.8.17</code> (github-search)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/kajisho5/ffmpeg-skill">https://github.com/kajisho5/ffmpeg-skill</a> ★ 5,565</td></tr>
+<tr><td>License</td><td>MIT</td></tr>
+<tr><td>Last push</td><td>2026-11-14</td></tr>
+<tr><td>Description</td><td>Agent Skill that gives coding agents (Claude Code, Cursor, Codex) a local video editor: 42 FFmpeg tools with a machine-readable contract, contract-derived MCP server, FFmpeg capability detection, probe-first / verify-last workflow. Cut, join, silence remo</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>1.46s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>❌</td><td>–</td><td>handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-e0ogr3mm/node_modules/ffmpeg-skill/bin/install.js</code>
+</p>
+<h2>Tools (0)</h2>
+<p class="subnote">none listed</p>
+
+<h2>Server stderr (tail)</h2><pre class="call">
+  warning: ffmpeg was not found on PATH. The skill needs FFmpeg to run:
+    macOS:   brew install ffmpeg-full; export PATH=&quot;$(brew --prefix ffmpeg-full)/bin:$PATH&quot;
+             # keg-only, so installing it does not put it on PATH: keep the export in your shell profile;
+             # the plain ffmpeg formula lacks subtitles/drawtext/zscale
+    Ubuntu:  sudo apt install ffmpeg
+    Windows: winget install Gyan.FFmpeg
+
+</pre>
+<h2>Errors</h2><pre class="call">handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</pre>
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/kajisho5-ffmpeg-skill.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/kajisho5-ffmpeg-skill.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

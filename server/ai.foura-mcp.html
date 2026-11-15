@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.foura/mcp.">
+<title>MCP Health Index — ai.foura/mcp</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>ai.foura/mcp</h1>
+<p class="tagline"><img src="../badges/ai.foura-mcp.svg" alt="badge"> <span class="chip warn">PARTIAL</span>
+&nbsp; stage: <code>list_tools</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.foura/mcp</td></tr>
+<tr><td>Source</td><td>npm — <code>@fouradata/mcp@0.8.3</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/fouradata/mcp">https://github.com/fouradata/mcp</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>Reliable web access for AI agents: smart HTTP, rotating proxies, and full-browser rendering.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>8.76s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>0.79s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.04s</td><td></td></tr><tr><td><code>list_resources</code></td><td>✅</td><td>0.00s</td><td></td></tr><tr><td><code>call</code></td><td>⏭</td><td>–</td><td>tool= args={} — no read-only-looking tool name found; call skipped by policy</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-973k24o4/node_modules/@fouradata/mcp/bin/foura-mcp.js</code>
+</p>
+<h2>Tools (4)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>foura_single</code></td><td>Send one HTTP request and return the response. Use it for static pages, JSON APIs, and server-rendered HTML, with your own headers, body and cookies. </td><td><code></code></td></tr><tr><td><code>foura_proxy</code></td><td>Route an HTTP request through rotating proxies, retrying on another exit until one delivers. Use it when foura_single is blocked, and whenever the exi</td><td><code></code></td></tr><tr><td><code>foura_browser</code></td><td>Load a public URL in a full browser session. JavaScript runs, the DOM renders, and cookies come back with the response. Use it for single-page apps, l</td><td><code></code></td></tr><tr><td><code>foura_auto</code></td><td>Give it a public URL and get the content back. Use it when only the content matters and not how it is fetched: it escalates from a direct request to a</td><td><code></code></td></tr></tbody></table>
+
+
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.foura-mcp.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.foura-mcp.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

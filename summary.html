@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How the health tests are run, isolation guarantees and limits.">
+<title>MCP Health Index — method &amp; environment</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero"><h1>Method &amp; environment</h1>
+<p class="tagline">How the MCP Health Index smoke-tests servers — and exactly what the isolation
+does and does not guarantee.</p></header>
+<main>
+<h2>What a "run" is</h2>
+<ol>
+<li><strong>Install</strong> — npm package → fresh <code>npm install --prefix $TMP</code>; PyPI →
+fresh <code>uv venv $TMP/venv</code> + <code>uv pip install</code>. Never installed globally.</li>
+<li><strong>Handshake</strong> — act as an MCP client over stdio (official <code>mcp</code> SDK):
+protocol initialize.</li>
+<li><strong>List tools / resources</strong> — capability discovery, with latency.</li>
+<li><strong>One harmless call</strong> — a tool whose <em>name</em> matches read-only verbs
+(list/get/read/search/…), called with inert arguments built only from <em>required</em> schema
+fields (enum→first value, default, or <code>"test"</code>/1/0). Names matching destructive verbs
+are skipped. Returned content is truncated.</li>
+</ol>
+<h2>Isolation that exists</h2>
+<ul>
+<li>Resource limits on the server process: 60 CPU-s, 2 GiB address space, 64 child processes,
+64 MiB file writes, 256 fds, no core dumps.</li>
+<li>Fresh sanitized environment: no inherited tokens/secrets, throwaway HOME/TMPDIR, all installs
+ephemeral in a temp dir that is deleted.</li>
+<li>Hard wall clock: SIGALRM + parent SIGKILL to the entire process group (each candidate runs in
+its own session).</li>
+<li>Network namespace isolation: <strong>OFF (unavailable: server processes get network egress)</strong></li>
+</ul>
+<h2>What isolation does NOT protect against</h2>
+<ul>
+<li><strong>Network egress</strong> (current run): server code could exfiltrate data or scan the
+network. Mitigated by the sanitized empty environment (nothing to steal) but not prevented.</li>
+<li>Sandbox is not a security boundary against a truly malicious package — a determined attacker
+inside the resource limits can still make outbound network calls. Treat every server as hostile.</li>
+<li>Tool <em>calls</em> are heuristic: name-based read-only detection can mislabel a tool. Inputs
+are inert, but a read-only call can still hit an external API with our placeholder credentials.</li>
+<li>We do not audit the code; "PASS" means "booted, listed tools, answered one read-only call".</li>
+</ul>
+<h2>Results breakdown</h2>
+<table><thead><tr><th>status:stage</th><th>servers</th></tr></thead>
+<tbody><tr><td><code>fail:handshake</code></td><td>76</td></tr><tr><td><code>pass:call</code></td><td>37</td></tr><tr><td><code>fail:install</code></td><td>24</td></tr><tr><td><code>partial:list_tools</code></td><td>8</td></tr><tr><td><code>partial:call</code></td><td>3</td></tr><tr><td><code>fail:list_tools</code></td><td>2</td></tr></tbody></table>
+<h2>Run environment</h2>
+<table><tbody><tr><td><code>last_finished_run_at</code></td><td>2026-11-14T22:40:20Z</td></tr><tr><td><code>net_isolation</code></td><td>OFF (unavailable: server processes get network egress)</td></tr><tr><td><code>python</code></td><td>3.14.4</td></tr><tr><td><code>started_run_at</code></td><td>2026-11-14T22:36:49Z</td></tr></tbody></table>
+<p class="subnote">Harness: Python 3.14.4 · official <code>mcp</code> SDK 2.3.0 · node/npm for
+npm candidates · uv for PyPI candidates.</p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="index.html">Index</a> ·
+<a href="summary.html">Method &amp; environment</a> ·
+<a href="data.json">data.json</a></footer>
+</body></html>

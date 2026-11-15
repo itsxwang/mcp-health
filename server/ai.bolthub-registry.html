@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.bolthub/registry.">
+<title>MCP Health Index — bolthub Marketplace</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>bolthub Marketplace</h1>
+<p class="tagline"><img src="../badges/ai.bolthub-registry.svg" alt="badge"> <span class="chip bad">FAIL</span>
+&nbsp; stage: <code>handshake</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.bolthub/registry</td></tr>
+<tr><td>Source</td><td>npm — <code>@bolthub/mcp-registry@0.1.6</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/signaltech-org/bolthub-sdk">https://github.com/signaltech-org/bolthub-sdk</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>Discover and call every paid API on the bolthub marketplace with automatic L402 Lightning payments.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>4.11s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>❌</td><td>–</td><td>handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-no6jbqvb/node_modules/@bolthub/mcp-registry/dist/index.js</code>
+</p>
+<h2>Tools (0)</h2>
+<p class="subnote">none listed</p>
+
+<h2>Server stderr (tail)</h2><pre class="call">[mcp-registry] bolthub API Registry MCP
+[mcp-registry] One config → every API on the marketplace
+Error: No wallet configured. Set one of the following:
+  LND_REST_HOST + LND_MACAROON         (recommended, fastest &lt;200ms)
+  PHOENIXD_URL + PHOENIXD_PASSWORD     (fast &lt;200ms, auto liquidity)
+  LNBITS_URL + LNBITS_ADMIN_KEY        (fast &lt;300ms)
+  NWC_URI                              (easiest, but slower 1-3s)
+</pre>
+<h2>Errors</h2><pre class="call">handshake: ExceptionGroup: ExceptionGroup: MCPError: Connection closed</pre>
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.bolthub-registry.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.bolthub-registry.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.formachines/errata.">
+<title>MCP Health Index — Errata</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>Errata</h1>
+<p class="tagline"><img src="../badges/ai.formachines-errata.svg" alt="badge"> <span class="chip ok">PASS</span>
+&nbsp; stage: <code>call</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.formachines/errata</td></tr>
+<tr><td>Source</td><td>npm — <code>@formachines/errata-mcp@0.1.3</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/formachines-ai/errata-mcp">https://github.com/formachines-ai/errata-mcp</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>Sandbox-verified fixes where AI models write outdated code for PyPI and npm libraries</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>3.69s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>0.47s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.01s</td><td></td></tr><tr><td><code>list_resources</code></td><td>❌</td><td>–</td><td>MCPError: Method not found</td></tr><tr><td><code>call</code></td><td>✅</td><td>0.01s</td><td>tool=check_package args={}</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-b_spvomj/node_modules/@formachines/errata-mcp/dist/bin.js</code>
+</p>
+<h2>Tools (3)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>check_package</code></td><td>Corrections for a PyPI or npm package where AI models write outdated code, each verified in a sandbox, with verdict apply / lead / none for the instal</td><td><code></code></td></tr><tr><td><code>search_error</code></td><td>Find corrections by an error message or traceback line (ImportError, AttributeError, TypeError …) or by an entry id. Returns the matching error signat</td><td><code></code></td></tr><tr><td><code>report</code></td><td>Send confirm (the fix worked) or dispute (it did not) for an entry id. Reports are quarantined and rechecked in the sandbox before anything changes.</td><td><code></code></td></tr></tbody></table>
+<h2>Call result preview</h2><pre class="call">MCP error -32602: Input validation error: Invalid arguments for tool check_package: Invalid option: expected one of &quot;pypi&quot;|&quot;npm&quot; at ecosystem
+Invalid input: expected string, received undefined at package</pre>
+
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.formachines-errata.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.formachines-errata.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

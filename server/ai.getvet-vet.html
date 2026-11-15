@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server ai.getvet/vet.">
+<title>MCP Health Index — ai.getvet/vet</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>ai.getvet/vet</h1>
+<p class="tagline"><img src="../badges/ai.getvet-vet.svg" alt="badge"> <span class="chip ok">PASS</span>
+&nbsp; stage: <code>call</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>ai.getvet/vet</td></tr>
+<tr><td>Source</td><td>npm — <code>@getvetai/mcp@0.4.2</code> (registry)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/getvetai/vet">https://github.com/getvetai/vet</a> ★ –</td></tr>
+<tr><td>License</td><td>unknown</td></tr>
+<tr><td>Last push</td><td>–</td></tr>
+<tr><td>Description</td><td>Discover and vet MCP servers: search 200K+ AI tools with security verification and schemas.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>4.22s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>0.68s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.02s</td><td></td></tr><tr><td><code>list_resources</code></td><td>❌</td><td>–</td><td>MCPError: Method not found</td></tr><tr><td><code>call</code></td><td>✅</td><td>0.01s</td><td>tool=get_tool_detail args={}</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-m35xki_z/node_modules/@getvetai/mcp/index.js</code>
+</p>
+<h2>Tools (6)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>discover_tools</code></td><td>Search the Vet registry for verified MCP servers and agent skills. Returns tools with verification status, security analysis, and schema counts. Use t</td><td><code></code></td></tr><tr><td><code>get_tool_detail</code></td><td>Get full details about a specific tool including verification results, security analysis, requirements, and available tool schemas. Use after discover</td><td><code></code></td></tr><tr><td><code>get_install_config</code></td><td>Get ready-to-use MCP configuration for a tool. Returns JSON configs for Claude Desktop, OpenClaw, and generic MCP clients. Includes env var placeholde</td><td><code></code></td></tr><tr><td><code>ask_vet</code></td><td>Ask Vet AI questions about MCP servers, agent skills, and AI tools. Uses RAG with 136K+ tools in the registry. Great for comparing tools, understandin</td><td><code></code></td></tr><tr><td><code>generate_tool</code></td><td>Generate a new MCP server from a natural language description. Vet finds similar verified tools as examples and generates working code using Claude So</td><td><code></code></td></tr><tr><td><code>get_tool_schemas</code></td><td>Get the full input/output schemas for all tools exposed by an MCP server. Requires a Vet API key for full schemas (free tier shows tool names only).</td><td><code></code></td></tr></tbody></table>
+<h2>Call result preview</h2><pre class="call">MCP error -32602: Input validation error: Invalid arguments for tool get_tool_detail: Invalid input: expected string, received undefined at slug</pre>
+
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/ai.getvet-vet.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/ai.getvet-vet.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>

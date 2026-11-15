@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live smoke-test report for MCP server github:microsoft/flint-chart.">
+<title>MCP Health Index — flint-chart-mcp</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero"><h1>flint-chart-mcp</h1>
+<p class="tagline"><img src="../badges/microsoft-flint-chart.svg" alt="badge"> <span class="chip ok">PASS</span>
+&nbsp; stage: <code>call</code></p></header>
+<main>
+
+<h2>Spec</h2>
+<table><tbody>
+<tr><td>Registry name</td><td>github:microsoft/flint-chart</td></tr>
+<tr><td>Source</td><td>npm — <code>flint-chart-mcp@1.0.1</code> (github-search)</td></tr>
+<tr><td>Repo</td><td><a href="https://github.com/microsoft/flint-chart">https://github.com/microsoft/flint-chart</a> ★ 4,577</td></tr>
+<tr><td>License</td><td>MIT</td></tr>
+<tr><td>Last push</td><td>2026-11-14</td></tr>
+<tr><td>Description</td><td>Model Context Protocol server for Flint — compile, validate, and render semantic chart specs across supported backends.</td></tr>
+</tbody></table>
+<h2>Run</h2>
+<table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>16.10s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>1.04s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.03s</td><td></td></tr><tr><td><code>list_resources</code></td><td>✅</td><td>0.01s</td><td></td></tr><tr><td><code>call</code></td><td>✅</td><td>0.02s</td><td>tool=validate_chart args={}</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-moii39ya/node_modules/flint-chart-mcp/dist/cli.js</code>
+</p>
+<h2>Tools (9)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>render_chart</code></td><td>Compile a Flint chart spec for a backend and render it to a STATIC image (PNG) or vector (SVG), returned inline. Rendering is local/in-process. The ch</td><td><code></code></td></tr><tr><td><code>compile_chart</code></td><td>Compile a Flint chart spec to a backend-native spec object (Vega-Lite / ECharts / Chart.js) without rendering. Returns the spec JSON, assembly warning</td><td><code></code></td></tr><tr><td><code>validate_chart</code></td><td>Validate a Flint chart spec for a backend without rendering. Reports whether it is valid, all warnings/errors, and the computed layout size. With an i</td><td><code></code></td></tr><tr><td><code>list_chart_types</code></td><td>List the available chart types, their encoding channels, and the interaction presets each supports in interaction_spec (Vega-Lite only), for a backend</td><td><code></code></td></tr><tr><td><code>list_interaction_presets</code></td><td>List the interaction presets for interaction_spec: what the reader does, what each needs from the chart, its reset gestures, and every option it accep</td><td><code></code></td></tr><tr><td><code>get_flint_skill</code></td><td>Return a bundled Flint skill as markdown. Read it before you write the matching spec: `chart` for a ChartAssemblyInput, `theme` for a ThemeSpec, `inte</td><td><code></code></td></tr><tr><td><code>list_themes</code></td><td>List Flint visual theme presets for `theme_spec` (for example, `theme_spec: &quot;economist&quot;`). Pass an `id` for preset-specific authoring guidance. To cus</td><td><code></code></td></tr><tr><td><code>validate_board</code></td><td>Check a board of several Flint charts without drawing it: the report gives the layout, each chart (✓/✗ per update op), what each chart sends and recei</td><td><code></code></td></tr><tr><td><code>show</code></td><td>Put a chart or a board on screen: pass the full spec as chart or as board, after validate_chart or validate_board report nothing left to fix. The card</td><td><code></code></td></tr></tbody></table>
+<h2>Call result preview</h2><pre class="call">MCP error -32602: Input validation error: Invalid arguments for tool validate_chart: Required at data
+Required at chart_spec
+Required at backend</pre>
+<h2>Server stderr (tail)</h2><pre class="call">flint-chart-mcp 1.0.1 ready on stdio (backends: vegalite, echarts, chartjs; local files readable on request)
+</pre>
+
+<h2>Embed the badge</h2>
+<pre class="call">[![MCP Health: PASS](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/badges/microsoft-flint-chart.svg&gt;)](&lt;https://YOUR-GITHUB-USERNAME.github.io/mcp-health-index/server/microsoft-flint-chart.html&gt;)</pre>
+<p><a href="../index.html">← back to the index</a></p>
+</main>
+<footer>Generated 2026-11-14 22:40 UTC by the MCP Health Index harness.
+Automated smoke tests of public MCP servers — not a security audit.
+<a href="../index.html">Index</a> ·
+<a href="../summary.html">Method &amp; environment</a> ·
+<a href="../data.json">data.json</a></footer>
+</body></html>
