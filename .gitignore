@@ -1,7 +1,6 @@
 .venv/
 __pycache__/
 *.pyc
-data/results.db
 data/results.db-journal
 data/specs/
 /site/

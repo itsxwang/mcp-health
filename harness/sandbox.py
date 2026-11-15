@@ -42,19 +42,20 @@ RLIMITS: dict[str, int] = {
 
 STATE_FILE = Path(os.environ.get("MCPHI_NETISO_STATE", "/tmp/opencode/mcphi-netiso.json"))
 
+# In-process cache only. A persistent verdict caused 200+ runs to miss newly
+# available namespace isolation after an rlimit fix — never cache across
+# processes again.
+_NETISO_CACHE: tuple[bool, str, list] | None = None
+
 
 def detect_network_isolation() -> tuple[bool, str, list[str]]:
     """Detect whether we can run server processes inside a network namespace.
 
     Returns (available, human_explanation, prefix_argv).
-    Cached in STATE_FILE so every worker agrees on one answer.
     """
-    try:
-        if STATE_FILE.exists():
-            cached = json.loads(STATE_FILE.read_text())
-            return cached["available"], cached["method"], cached.get("prefix", [])
-    except Exception:
-        pass
+    global _NETISO_CACHE
+    if _NETISO_CACHE is not None:
+        return _NETISO_CACHE
 
     available, method, prefix = False, "not available on this host", []
 
@@ -84,11 +85,7 @@ def detect_network_isolation() -> tuple[bool, str, list[str]]:
     if not available:
         method = ("unavailable on this host (no unprivileged user/network namespaces) "
                   "- server processes ran with normal network egress")
-    try:
-        STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
-        STATE_FILE.write_text(json.dumps({"available": available, "method": method, "prefix": prefix}))
-    except Exception:
-        pass
+    _NETISO_CACHE = (available, method, prefix)
     return available, method, prefix
 
 
