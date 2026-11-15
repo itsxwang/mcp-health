@@ -2,5 +2,9 @@
 # Everything else is Python stdlib (urllib, sqlite3, subprocess, resource…).
 mcp==2.3.0
 
+# Site build-time dep (OG images). Optional: sitegen skips images gracefully
+# without it, but pin it since we generate them on the daily cron.
+pillow==13.0.0
+
 # Tool (not a Python dep): uv is used to create ephemeral venvs for PyPI candidates.
 # Install with: curl -LsSf https://astral.sh/uv/install.sh | sh

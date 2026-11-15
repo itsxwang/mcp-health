@@ -29,6 +29,7 @@ to complete a full client round-trip today."
 official MCP registry API ─┐
                            ├─→ fetch.py ─→ SQLite (data/results.db)
 GitHub stars search ───────┘   (candidates + stars/license/freshness)
+GitHub submission issues ──┘   (intake.py parses open server-submission issues)
         │  (+ verified npm-repo fallback when the registry is thin)
         ▼
    run.py  ── spawns per candidate ──▶  python -m harness.oneshot
@@ -40,10 +41,14 @@ GitHub stars search ───────┘   (candidates + stars/license/fresh
         │                                  └─ writes data/results/<slug>.json
         ▼
    sitegen.py ──▶ site/  (pure HTML/CSS + ~15 lines vanilla JS, GitHub-Pages ready)
-        ├── index.html          sortable table, status chips, failure-mode counts
-        ├── server/<slug>.html  full run report per server
-        ├── summary.html        method, environment, isolation guarantees & limits
+        ├── index.html          sortable table, status chips, live pass-rate headline
+        ├── server/<slug>.html  full run report per server (+ embed snippet, freshness)
+        ├── methodology.html    what a test is, what PASS means, limits, FAQ
+        ├── badges.html         embed instructions + badge gallery
+        ├── summary.html        exact run environment
         ├── badges/<slug>.svg   shields-style badge per server
+        ├── og/*.png            1200×630 OG cards (Pillow, generated locally)
+        ├── robots.txt / sitemap.xml
         └── data.json           machine-readable full results
 ```
 
@@ -135,9 +140,15 @@ runs untrusted code on purpose; here is exactly what is and isn't contained.
 
 ## Reproduce
 
-See commands in `LAUNCH_CHECKLIST.md` §Daily operation. Requirements: Python ≥3.10
-(the official `mcp` SDK is the only pinned runtime dep), Node/npm for npm candidates,
-`uv` for PyPI candidates, network access.
+See `LAUNCH_CHECKLIST.md` (§Daily operation). Live site:
+https://itsxwang.github.io/mcp-health/ · submit your server via a pre-filled
+[GitHub issue](https://github.com/itsxwang/mcp-health/issues/new?labels=server-submission).
+Requirements: Python ≥3.10 (the official `mcp` SDK is the only pinned runtime dep),
+Node/npm for npm candidates, `uv` for PyPI candidates, network access.
+
+## Contact
+
+xion.dev7@gmail.com · not affiliated with Anthropic or the Model Context Protocol project.
 
 ## License
 

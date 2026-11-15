@@ -6,22 +6,20 @@ only, revenue in BTC/SOL/USDT via the separate crypto checkout project.
 
 ## 1. Deploy the static site to GitHub Pages (free)
 
-1. Create a **public** GitHub repo, e.g. `<your-username>/mcp-health-index`.
-2. Push this repo to it (the `site/` directory is committed and deployable as-is):
-   ```bash
-   git remote add origin https://github.com/<your-username>/mcp-health-index.git
-   git push -u origin main
-   ```
-3. Repo → **Settings → Pages → Build and deployment → Source: Deploy from a branch →
-   Branch: `main` / root** → Save. (Alternatively use the `gh-pages` folder trick or
-   Actions; branch-from-root is the zero-config path.)
-4. Site live at `https://<your-username>.github.io/mcp-health-index/` (allow ~2 min).
-5. Regenerate with the real base URL so badge markdown embeds absolute URLs:
-   ```bash
-   .venv/bin/python sitegen.py --base-url https://<your-username>.github.io/mcp-health-index
-   git add site && git commit -m "site: absolute badge URLs" && git push
-   ```
-6. Optional: add a CNAME file for a custom domain (still $0 if you own the domain).
+Live at **https://itsxwang.github.io/mcp-health/** — deployed from the `gh-pages`
+branch (orphan branch containing only the built site + `.nojekyll`).
+
+Deploy pattern (what the daily workflow automates):
+```bash
+.venv/bin/python sitegen.py                      # writes site/
+git switch --orphan gh-pages 2>/dev/null || git switch gh-pages
+rm -rf ./* ; cp -a site/* . ; touch .nojekyll
+git add -A && git commit -m "deploy: MCP Health Index" && git push origin gh-pages
+git switch main
+```
+In CI the daily workflow (`.github/workflows/daily.yml`) does this automatically after
+each run: ingest submitted issues → run harness batch → rebuild site → push `gh-pages`
+→ push updated DB back to `main`.
 
 ## 2. Keep it fresh — schedule the daily run
 
@@ -67,8 +65,15 @@ machine" guidance. (`|| true` keeps the workflow green when a run exits non-zero
 0 6 * * *  cd ~/mcp-health-index && PATH="$HOME/.local/bin:$PATH" .venv/bin/python -m harness.run --limit 40 && .venv/bin/python sitegen.py --base-url https://… && git add -A && git commit -m "daily" && git push
 ```
 
-Either way: commit `data/results.db` and `site/` daily. The DB history is what
-powers the future breakage-alert product.
+Either way: commit `data/results.db` back to `main` and deploy `site/` to `gh-pages`
+daily (the workflow above does both). The DB history is what powers the future
+breakage-alert product.
+
+**Submitted-issue intake (already wired):** the site's "Get your server tested"
+button opens a pre-filled GitHub issue (`labels=server-submission`). The daily
+workflow runs `python -m harness.intake` first: open issues with a parseable
+`Package registry` + `Package name` become priority candidates and are tested in
+that run. Weekly human task: skim open issues, close spam/broken ones.
 
 ## 3. Announce (in order)
 

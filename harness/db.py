@@ -114,7 +114,7 @@ def record_result(con: sqlite3.Connection, result: dict) -> None:
 def candidates(con: sqlite3.Connection, only_untested: bool = True, limit: int | None = None) -> list[sqlite3.Row]:
     sql = ("SELECT * FROM servers WHERE source IN ('npm','pypi','command') "
            + ("AND tested_at IS NULL " if only_untested else "")
-           + "ORDER BY (stars IS NULL), stars DESC, name ASC")
+           + "ORDER BY (origin <> 'submit'), (stars IS NULL), stars DESC, name ASC")
     if limit:
         sql += f" LIMIT {int(limit)}"
     return con.execute(sql).fetchall()
