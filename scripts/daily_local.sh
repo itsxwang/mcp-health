@@ -21,7 +21,7 @@ if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
 else
   git switch --orphan gh-pages
 fi
-find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name '.nojekyll' -exec rm -rf {} +
+find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name '.nojekyll' ! -name 'site' -exec rm -rf {} +
 cp -a site/* .
 touch .nojekyll
 git add -A
