@@ -41,7 +41,7 @@ are skipped. Returned content is truncated.</li>
 ephemeral in a temp dir that is deleted.</li>
 <li>Hard wall clock: SIGALRM + parent SIGKILL to the entire process group (each candidate runs in
 its own session).</li>
-<li>Network namespace isolation: <strong>OFF for the 228 recorded results (stale capability probe, now fixed). New runs put server processes inside a bubblewrap network namespace when the host allows (verified working here).</strong></li>
+<li>Network namespace isolation: <strong>bubblewrap --unshare-net</strong></li>
 </ul>
 <h2>What isolation does NOT protect against</h2>
 <ul>
@@ -55,9 +55,9 @@ are inert, but a read-only call can still hit an external API with our placehold
 </ul>
 <h2>Results breakdown</h2>
 <table><thead><tr><th>status:stage</th><th>servers</th></tr></thead>
-<tbody><tr><td><code>fail:handshake</code></td><td>118</td></tr><tr><td><code>pass:call</code></td><td>63</td></tr><tr><td><code>fail:install</code></td><td>28</td></tr><tr><td><code>partial:list_tools</code></td><td>11</td></tr><tr><td><code>fail:list_tools</code></td><td>5</td></tr><tr><td><code>partial:call</code></td><td>3</td></tr></tbody></table>
+<tbody><tr><td><code>fail:handshake</code></td><td>142</td></tr><tr><td><code>pass:call</code></td><td>75</td></tr><tr><td><code>fail:install</code></td><td>31</td></tr><tr><td><code>partial:list_tools</code></td><td>12</td></tr><tr><td><code>fail:list_tools</code></td><td>5</td></tr><tr><td><code>partial:call</code></td><td>3</td></tr></tbody></table>
 <h2>Run environment</h2>
-<table><tbody><tr><td><code>net_isolation</code></td><td>OFF for the 228 recorded results (stale capability probe, now fixed). New runs put server processes inside a bubblewrap network namespace when the host allows (verified working here).</td></tr><tr><td><code>python</code></td><td>3.14.4</td></tr></tbody></table>
+<table><tbody><tr><td><code>last_finished_run_at</code></td><td>2026-11-16T08:39:12Z</td></tr><tr><td><code>net_isolation</code></td><td>bubblewrap --unshare-net</td></tr><tr><td><code>python</code></td><td>3.14.4</td></tr><tr><td><code>started_run_at</code></td><td>2026-11-16T08:36:26Z</td></tr></tbody></table>
 <p class="subnote">Harness: Python 3.14.4 · official <code>mcp</code> SDK 2.3.0 · node/npm for
 npm candidates · uv for PyPI candidates.</p>
 </main>
@@ -69,7 +69,7 @@ npm candidates · uv for PyPI candidates.</p>
 <a href="data.json">data.json</a> ·
 <a href="https://github.com/itsxwang/mcp-health/issues/new?labels=server-submission&title=Server+test+request%3A+%3Cpackage+name%3E&body=%23%23%23%20MCP%20server%20submission%0A%0APackage%20registry%3A%20npm%20%20%20%20%20%20%20%20%20%20%20%20%3C%21--%20npm%20or%20pypi%20--%3E%0APackage%20name%3A%20%40scope/name%0AVersion%20%28optional%29%3A%0ARepository%20URL%3A%0ARequired%20env%20vars%20%28names%20only%29%3A%0ANotes%3A%0A%0A---%0ASubmitted%20via%20the%20MCP%20Health%20Index%20site.%20Open%20issues%20are%20ingested%20by%20the%20daily%0Aharness%20cron%20and%20tested%20in%20the%20next%20batch%20%E2%80%94%20check%20the%20server%27s%20page%20within%20~24h.">Get your server tested</a> ·
 <a href="mailto:xion.dev7@gmail.com">xion.dev7@gmail.com</a>
-<br>Generated 2026-11-15 09:39 UTC by the MCP Health Index harness.
+<br>Generated 2026-11-16 08:42 UTC by the MCP Health Index harness.
 Automated smoke tests of public MCP servers — not a security audit.
 Not affiliated with Anthropic or the Model Context Protocol project.</footer>
 </body></html>

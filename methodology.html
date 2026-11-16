@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="How 228 MCP servers are smoke-tested: ephemeral install, isolated handshake, tool listing and one harmless call — plus what PASS does and does not prove.">
+<meta name="description" content="How 268 MCP servers are smoke-tested: ephemeral install, isolated handshake, tool listing and one harmless call — plus what PASS does and does not prove.">
 <meta property="og:title" content="Methodology — MCP Health Index">
-<meta property="og:description" content="How 228 MCP servers are smoke-tested: ephemeral install, isolated handshake, tool listing and one harmless call — plus what PASS does and does not prove.">
+<meta property="og:description" content="How 268 MCP servers are smoke-tested: ephemeral install, isolated handshake, tool listing and one harmless call — plus what PASS does and does not prove.">
 <meta property="og:image" content="https://itsxwang.github.io/mcp-health/og/index.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Methodology — MCP Health Index">
-<meta name="twitter:description" content="How 228 MCP servers are smoke-tested: ephemeral install, isolated handshake, tool listing and one harmless call — plus what PASS does and does not prove.">
+<meta name="twitter:description" content="How 268 MCP servers are smoke-tested: ephemeral install, isolated handshake, tool listing and one harmless call — plus what PASS does and does not prove.">
 <meta name="twitter:image" content="https://itsxwang.github.io/mcp-health/og/index.png">
 <title>Methodology — MCP Health Index</title>
 <link rel="stylesheet" href="style.css">
@@ -22,7 +22,7 @@
 what a test is, what it proves, what it does not prove, and where the sandbox stops.</p></header>
 <main>
 <div class="statbar">
-<span class="big">228</span><label>servers smoke-tested live</label>
+<span class="big">268</span><label>servers smoke-tested live</label>
 <span class="big ok">28%</span><label>full PASS rate</label>
 <span class="big bad">72%</span><label>don't fully pass</label>
 <span class="big">359</span><label>candidates queued</label>
@@ -73,7 +73,7 @@ than 7 days is marked stale on the site until the daily run refreshes it.</li>
 <li>Hard wall clock: every candidate runs in its own OS session/process group; a SIGALRM
 watchdog and the orchestrator both end with <code>SIGKILL</code> to the entire group —
 a hung or fork-bombing server cannot outlive its budget.</li>
-<li>Network namespace isolation: <strong>OFF for the 228 recorded results (stale capability probe, now fixed). New runs put server processes inside a bubblewrap network namespace when the host allows (verified working here).</strong></li>
+<li>Network namespace isolation: <strong>bubblewrap --unshare-net</strong></li>
 </ul>
 
 <h2>What isolation does NOT protect against</h2>
@@ -93,7 +93,7 @@ API call with our placeholder credentials.</li>
 
 <h2>Cadence</h2>
 <p>The harness runs <strong>daily</strong> (GitHub Actions cron or local cron). Each run
-tests a batch of not-yet-tested candidates from the queue (131 currently
+tests a batch of not-yet-tested candidates from the queue (91 currently
 waiting) and re-tests priority items. <a href="summary.html">Exact run environment and
 history →</a></p>
 
@@ -136,7 +136,7 @@ email <a href="mailto:xion.dev7@gmail.com">xion.dev7@gmail.com</a>.</p></details
 <a href="data.json">data.json</a> ·
 <a href="https://github.com/itsxwang/mcp-health/issues/new?labels=server-submission&title=Server+test+request%3A+%3Cpackage+name%3E&body=%23%23%23%20MCP%20server%20submission%0A%0APackage%20registry%3A%20npm%20%20%20%20%20%20%20%20%20%20%20%20%3C%21--%20npm%20or%20pypi%20--%3E%0APackage%20name%3A%20%40scope/name%0AVersion%20%28optional%29%3A%0ARepository%20URL%3A%0ARequired%20env%20vars%20%28names%20only%29%3A%0ANotes%3A%0A%0A---%0ASubmitted%20via%20the%20MCP%20Health%20Index%20site.%20Open%20issues%20are%20ingested%20by%20the%20daily%0Aharness%20cron%20and%20tested%20in%20the%20next%20batch%20%E2%80%94%20check%20the%20server%27s%20page%20within%20~24h.">Get your server tested</a> ·
 <a href="mailto:xion.dev7@gmail.com">xion.dev7@gmail.com</a>
-<br>Generated 2026-11-15 09:39 UTC by the MCP Health Index harness.
+<br>Generated 2026-11-16 08:42 UTC by the MCP Health Index harness.
 Automated smoke tests of public MCP servers — not a security audit.
 Not affiliated with Anthropic or the Model Context Protocol project.</footer>
 </body></html>

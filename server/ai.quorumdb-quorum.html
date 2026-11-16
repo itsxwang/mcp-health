@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Live smoke-test report for MCP server ai.quorumdb/quorum: UNTESTED.">
+<meta name="description" content="Live smoke-test report for MCP server ai.quorumdb/quorum: PASS, 16 tools.">
 <meta property="og:title" content="MCP Health Index — ai.quorumdb/quorum">
-<meta property="og:description" content="Live smoke-test report for MCP server ai.quorumdb/quorum: UNTESTED.">
+<meta property="og:description" content="Live smoke-test report for MCP server ai.quorumdb/quorum: PASS, 16 tools.">
 <meta property="og:image" content="https://itsxwang.github.io/mcp-health/og/ai.quorumdb-quorum.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MCP Health Index — ai.quorumdb/quorum">
-<meta name="twitter:description" content="Live smoke-test report for MCP server ai.quorumdb/quorum: UNTESTED.">
+<meta name="twitter:description" content="Live smoke-test report for MCP server ai.quorumdb/quorum: PASS, 16 tools.">
 <meta name="twitter:image" content="https://itsxwang.github.io/mcp-health/og/ai.quorumdb-quorum.png">
 <title>MCP Health Index — ai.quorumdb/quorum</title>
 <link rel="stylesheet" href="../style.css">
@@ -18,8 +18,8 @@
 <body>
 
 <header class="hero"><h1>ai.quorumdb/quorum</h1>
-<p class="tagline"><img src="../badges/ai.quorumdb-quorum.svg" alt="badge"> <span class="chip mute">UNTESTED</span>
-&nbsp; stage: <code>–</code> · not yet tested (queued)</p>
+<p class="tagline"><img src="../badges/ai.quorumdb-quorum.svg" alt="badge"> <span class="chip ok">PASS</span>
+&nbsp; stage: <code>call</code> · last tested <strong>2026-11-16</strong> · full run took 2.51s</p>
 <div class="embed-box">
 <strong>Embed this badge</strong> in your README — it updates with every daily re-test:
 <pre class="call">[![MCP Health: PASS](&lt;https://itsxwang.github.io/mcp-health/badges/ai.quorumdb-quorum.svg&gt;)](&lt;https://itsxwang.github.io/mcp-health/server/ai.quorumdb-quorum.html&gt;)</pre>
@@ -38,13 +38,29 @@
 </tbody></table>
 <h2>Run</h2>
 <table><thead><tr><th>phase</th><th>result</th><th>time</th><th>detail</th></tr></thead>
-<tbody><tr><td><code>install</code></td><td>❌</td><td>–</td><td></td></tr></tbody></table>
-<p>Launch argv: <code></code>
+<tbody><tr><td><code>install</code></td><td>✅</td><td>2.22s</td><td>npm:bin</td></tr><tr><td><code>handshake</code></td><td>✅</td><td>0.22s</td><td></td></tr><tr><td><code>list_tools</code></td><td>✅</td><td>0.01s</td><td></td></tr><tr><td><code>list_resources</code></td><td>✅</td><td>0.00s</td><td></td></tr><tr><td><code>call</code></td><td>✅</td><td>0.01s</td><td>tool=quorum_list_connections args={}</td></tr></tbody></table>
+<p>Launch argv: <code>node /tmp/opencode/mcphi-runs/mcphi-run-j8746ako/node_modules/quorum-mcp-server/dist/index.js</code>
 </p>
-<h2>Tools (0)</h2>
-<p class="subnote">none listed</p>
+<h2>Tools (16)</h2>
+<table><thead><tr><th>name</th><th>description</th><th>required args</th></tr></thead><tbody><tr><td><code>quorum_list_connections</code></td><td>List all database connections configured in Quorum that are enabled for MCP access.
 
+Returns connection metadata (id, name, type, environment). Never </td><td><code></code></td></tr><tr><td><code>quorum_get_schema</code></td><td>Get the full schema tree for a database connection — tables, views, columns, types, and keys.
 
+Use quorum_list_connections first to get valid connecti</td><td><code></code></td></tr><tr><td><code>quorum_execute_query</code></td><td>Execute a SQL query against a Quorum database connection.
+
+Reads run in a read-only session; masked columns stay masked. For changes, use quorum_propo</td><td><code></code></td></tr><tr><td><code>quorum_list_saved_queries</code></td><td>List saved queries from Quorum&#x27;s query library.
+
+Useful for discovering pre-built queries that are known to work against a connection.
+
+Args:
+  - conn</td><td><code></code></td></tr><tr><td><code>quorum_describe_table</code></td><td>Columns, types, keys, row count and the team&#x27;s descriptions for one table or view.</td><td><code></code></td></tr><tr><td><code>quorum_search_schema</code></td><td>Find tables and columns whose name contains the text, across all MCP-enabled connections or one.</td><td><code></code></td></tr><tr><td><code>quorum_sample_rows</code></td><td>Up to 100 rows from one table, read in a read-only session. Masked columns come back masked.</td><td><code></code></td></tr><tr><td><code>quorum_explain_query</code></td><td>The database&#x27;s plan for one read (EXPLAIN, never ANALYZE, so nothing runs). PostgreSQL, MySQL, SQLite, DuckDB, Snowflake, ClickHouse and H2.</td><td><code></code></td></tr><tr><td><code>quorum_run_saved_query</code></td><td>Run one of the team&#x27;s saved queries by name (reads only). Uses its own connection unless one is given.</td><td><code></code></td></tr><tr><td><code>quorum_get_query_history</code></td><td>Queries run in Quorum recently on MCP-enabled connections, newest first, with status, rows and timing.</td><td><code></code></td></tr><tr><td><code>quorum_get_audit_log</code></td><td>Recorded writes and refused writes on MCP-enabled connections: who, what, risk and rows affected.</td><td><code></code></td></tr><tr><td><code>quorum_get_data_dictionary</code></td><td>The team&#x27;s descriptions of tables and columns for one connection.</td><td><code></code></td></tr><tr><td><code>quorum_get_service_health</code></td><td>Services from the observability provider set up in Quorum (Last9 or Datadog): health, p95 latency, error rate and traffic against last week.</td><td><code></code></td></tr><tr><td><code>quorum_propose_write</code></td><td>Ask a person to approve a data or schema change in the Quorum app. Nothing runs until they approve it there; it then runs exactly as proposed, once.
+
+</td><td><code></code></td></tr><tr><td><code>quorum_get_proposal</code></td><td>The status of a request made with quorum_propose_write. wait_seconds (max 110) waits for a decision.</td><td><code></code></td></tr><tr><td><code>quorum_list_proposals</code></td><td>Recent write requests and their status, newest first.</td><td><code></code></td></tr></tbody></table>
+<h2>Call result preview</h2><pre class="call">Quorum is not running. Please open the Quorum app and try again.</pre>
+<h2>Server stderr (tail)</h2><pre class="call">[quorum-mcp] WARNING: Quorum is not running or has not written mcp-manifest.json yet.
+[quorum-mcp] Open Quorum and try again. Tools will return errors until Quorum is running.
+[quorum-mcp] MCP server running via stdio
+</pre>
 
 <h2>Embed the badge</h2>
 <p>Markdown (copy-paste into your README):</p>
@@ -64,7 +80,7 @@ run, or email <a href="mailto:xion.dev7@gmail.com">xion.dev7@gmail.com</a>.</p>
 <a href="../data.json">data.json</a> ·
 <a href="https://github.com/itsxwang/mcp-health/issues/new?labels=server-submission&title=Server+test+request%3A+%3Cpackage+name%3E&body=%23%23%23%20MCP%20server%20submission%0A%0APackage%20registry%3A%20npm%20%20%20%20%20%20%20%20%20%20%20%20%3C%21--%20npm%20or%20pypi%20--%3E%0APackage%20name%3A%20%40scope/name%0AVersion%20%28optional%29%3A%0ARepository%20URL%3A%0ARequired%20env%20vars%20%28names%20only%29%3A%0ANotes%3A%0A%0A---%0ASubmitted%20via%20the%20MCP%20Health%20Index%20site.%20Open%20issues%20are%20ingested%20by%20the%20daily%0Aharness%20cron%20and%20tested%20in%20the%20next%20batch%20%E2%80%94%20check%20the%20server%27s%20page%20within%20~24h.">Get your server tested</a> ·
 <a href="mailto:xion.dev7@gmail.com">xion.dev7@gmail.com</a>
-<br>Generated 2026-11-15 09:39 UTC by the MCP Health Index harness.
+<br>Generated 2026-11-16 08:42 UTC by the MCP Health Index harness.
 Automated smoke tests of public MCP servers — not a security audit.
 Not affiliated with Anthropic or the Model Context Protocol project.</footer>
 </body></html>
