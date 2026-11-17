@@ -12,15 +12,17 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-STATUS_COLORS = {"pass": "#2ea043", "partial": "#d29922", "fail": "#cf222e", "untested": "#6e7681"}
+STATUS_COLORS = {"pass": "#34d399", "partial": "#fbbf24", "fail": "#f87171", "untested": "#6e7681"}
 STATUS_LABEL = {"pass": "PASS", "partial": "PARTIAL", "fail": "FAIL", "untested": "UNTESTED"}
-BG = "#0d1117"
-BORDER = "#30363d"
-MUTED = "#8b949e"
-FG = "#e6edf3"
-LINK = "#58a6ff"
+BG = "#0b1220"
+BORDER = "#1f2c47"
+MUTED = "#9fb0d0"
+FG = "#e2e8f0"
+LINK = "#8ab4ff"
 
+_FONT_DIR = Path(__file__).resolve().parent / "assets" / "fonts"
 FONT_CANDIDATES = [
+    str(_FONT_DIR / "SpaceGrotesk-Bold.ttf"),  # vendored (design-language.md: Space Grotesk headings)
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
     "/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf",
     "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
