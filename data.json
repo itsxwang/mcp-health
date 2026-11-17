@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T08:42:17Z",
+ "generated_at": "2026-11-17T07:56:10Z",
  "base_url": "https://itsxwang.github.io/mcp-health",
  "environment": {
   "net_isolation": "bubblewrap --unshare-net",
