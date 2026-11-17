@@ -31,20 +31,17 @@ jobs:
         run: |
           python -m harness.run --limit 40 --workers 4 || true
           python sitegen.py
-      - name: publish site to gh-pages (orphan branch)
+      - name: publish site to gh-pages (isolated worktree deploy)
         run: |
           git config user.name "health-bot"
           git config user.email "bot@users.noreply.github.com"
-          git fetch origin gh-pages --depth 1 || true
-          if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
-            git switch gh-pages
-            git reset --hard origin/gh-pages
-          else
-            git switch --orphan gh-pages
-          fi
-          find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name '.nojekyll' ! -name 'site' -exec rm -rf {} +
-          cp -a site/* .
-          touch .nojekyll
+          git worktree add /tmp/mcphi-ghp gh-pages 2>/dev/null || true
+          ( cd /tmp/mcphi-ghp && git reset --hard origin/gh-pages )
+          find /tmp/mcphi-ghp -mindepth 1 -maxdepth 1 ! -name '.git' ! -name '.nojekyll' -exec rm -rf {} +
+          cp -a site/. /tmp/mcphi-ghp/
+          touch /tmp/mcphi-ghp/.nojekyll
+          grep -q donut /tmp/mcphi-ghp/index.html   # guard: refuse stale builds
+          cd /tmp/mcphi-ghp
           git add -A
           git commit -m "deploy: MCP Health Index $(date -u +%FT%TZ)" || echo "no changes"
           git push origin gh-pages
