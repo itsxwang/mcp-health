@@ -153,3 +153,10 @@ xion.dev7@gmail.com · not affiliated with Anthropic or the Model Context Protoc
 ## License
 
 MIT. Test results are facts about public packages; publish freely with attribution.
+
+## Related projects
+
+- **Citation Monitor** — weekly AI-visibility digests ($19/mo, crypto-only): https://itsxwang.github.io/citation-monitor/
+- **Cash Register** — the static crypto-checkout stack that sells our tools (BTC/ETH/SOL, keyless on-chain confirmation): https://itsxwang.github.io/cash-register/
+
+Contact: xion.dev7@gmail.com
