@@ -5,15 +5,26 @@ var reduced=false;
 try{ reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
 root.classList.add("js");
 
-/* theme toggle: 150ms surface transition, persisted, respects prefers-color-scheme */
+/* theme toggle: pill switch (sun/moon knob) + View Transition cross-fade,
+ * persisted, respects prefers-color-scheme */
 var btn=d.getElementById("theme-toggle");
-if(btn){ btn.addEventListener("click",function(){
-  var cur=root.getAttribute("data-theme")==="light"?"dark":"light";
-  root.classList.add("theming");
-  root.setAttribute("data-theme",cur);
-  try{ localStorage.setItem("mcphi-theme",cur); }catch(e){}
-  setTimeout(function(){ root.classList.remove("theming"); },180);
-});}
+if(btn){
+  var knob=btn.querySelector(".knob");
+  var syncBtn=function(){
+    var dark=root.getAttribute("data-theme")==="dark";
+    if(knob){
+      btn.setAttribute("aria-pressed",dark?"true":"false");
+      btn.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");
+    }
+  };
+  syncBtn();
+  btn.addEventListener("click",function(){
+    var next=root.getAttribute("data-theme")==="light"?"dark":"light";
+    var apply=function(){ root.setAttribute("data-theme",next); syncBtn(); };
+    try{ if(d.startViewTransition&&!reduced){ d.startViewTransition(apply); } else { apply(); } }catch(e){ apply(); }
+    try{ localStorage.setItem("mcphi-theme",next); }catch(e){}
+  });
+}
 
 function onView(el,fn){
   if(reduced||!("IntersectionObserver" in window)){ fn(); return; }
