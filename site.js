@@ -5,14 +5,14 @@ var reduced=false;
 try{ reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
 root.classList.add("js");
 
-/* theme toggle: 250ms color transition, persisted, respects prefers-color-scheme */
+/* theme toggle: 150ms surface transition, persisted, respects prefers-color-scheme */
 var btn=d.getElementById("theme-toggle");
 if(btn){ btn.addEventListener("click",function(){
   var cur=root.getAttribute("data-theme")==="light"?"dark":"light";
   root.classList.add("theming");
   root.setAttribute("data-theme",cur);
   try{ localStorage.setItem("mcphi-theme",cur); }catch(e){}
-  setTimeout(function(){ root.classList.remove("theming"); },300);
+  setTimeout(function(){ root.classList.remove("theming"); },180);
 });}
 
 function onView(el,fn){

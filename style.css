@@ -194,8 +194,11 @@ details p code{color:var(--ink)}
 .js [data-reveal]{opacity:0;transform:translateY(12px)}
 .js [data-reveal].in{opacity:1;transform:none;transition:opacity .5s ease-out,transform .5s ease-out}
 
-/* theme switch: 250ms color transition (applied only while switching) */
-.theming,.theming *{transition:background-color .25s ease,border-color .25s ease,color .25s ease,fill .25s ease,stroke .25s ease !important}
+/* theme switch: short transitions on the big surfaces ONLY (applied while switching).
+ * Never `.theming *` here: the results table has hundreds of rows and a universal
+ * transition forces tens of thousands of simultaneous interpolations per click. */
+.theming, .theming body, .theming .topbar, .theming .hero, .theming .card,
+.theming .callout, .theming footer {transition:background-color .15s ease, color .15s ease, border-color .15s ease !important}
 
 /* reduced motion: ALL animation off — non-negotiable (design-language.md §5) */
 @media (prefers-reduced-motion: reduce){
